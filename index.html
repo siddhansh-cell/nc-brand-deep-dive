@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NC Brand Sales Deep Dive — w/c 8 Jun vs 15 Jun 2026</title>
+<title>NC Brand Sales Deep Dive — w/c 15 Jun vs 22 Jun 2026</title>
 <style>
   :root {
     --slate-900: #0f172a;
@@ -27,6 +27,9 @@
     --amber-50: #fffbeb;
     --blue-600: #2563eb;
     --blue-100: #dbeafe;
+    --purple-600: #7c3aed;
+    --purple-100: #ede9fe;
+    --purple-50: #f5f3ff;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -45,10 +48,7 @@
     padding: 2rem 1.5rem 4rem;
   }
 
-  /* Header */
-  .header {
-    margin-bottom: 2.5rem;
-  }
+  .header { margin-bottom: 2.5rem; }
   .header-top {
     display: flex;
     align-items: center;
@@ -70,21 +70,12 @@
     font-size: 0.75rem;
     font-weight: 600;
   }
-  .header .badge.positive {
-    background: var(--green-100);
-    color: var(--green-600);
-  }
-  .header .badge.negative {
-    background: var(--red-100);
-    color: var(--red-600);
-  }
-  .header .subtitle {
-    color: var(--slate-500);
-    font-size: 0.875rem;
-  }
+  .header .badge.positive { background: var(--green-100); color: var(--green-600); }
+  .header .badge.negative { background: var(--red-100); color: var(--red-600); }
+  .header .badge.neutral { background: var(--amber-100); color: var(--amber-600); }
+  .header .subtitle { color: var(--slate-500); font-size: 0.875rem; }
   .header .subtitle strong { color: var(--slate-700); }
 
-  /* Stat cards */
   .stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -118,10 +109,7 @@
   .stat-card .delta.negative { color: var(--red-600); }
   .stat-card .delta.positive { color: var(--green-600); }
 
-  /* Sections */
-  .section {
-    margin-bottom: 2.5rem;
-  }
+  .section { margin-bottom: 2.5rem; }
   .section-header {
     display: flex;
     align-items: center;
@@ -142,18 +130,18 @@
   .section-header .icon.red { background: var(--red-100); }
   .section-header .icon.amber { background: var(--amber-100); }
   .section-header .icon.blue { background: var(--blue-100); }
+  .section-header .icon.purple { background: var(--purple-100); }
   .section-header h2 {
     font-size: 1.125rem;
     font-weight: 700;
     color: var(--slate-900);
   }
 
-  /* Tables */
   .table-wrap {
     background: white;
     border: 1px solid var(--slate-200);
     border-radius: 12px;
-    overflow: hidden;
+    overflow-x: auto;
     margin-bottom: 1.25rem;
   }
   table {
@@ -187,7 +175,6 @@
   .val-pos { color: var(--green-600); font-weight: 600; }
   .val-neg { color: var(--red-600); font-weight: 600; }
 
-  /* Context cards */
   .context-list {
     display: flex;
     flex-direction: column;
@@ -203,11 +190,13 @@
   .context-card.green { border-left-color: var(--green-600); }
   .context-card.red { border-left-color: var(--red-600); }
   .context-card.amber { border-left-color: var(--amber-600); }
+  .context-card.purple { border-left-color: var(--purple-600); }
   .context-card .brand-line {
     display: flex;
     align-items: baseline;
     gap: 0.5rem;
     margin-bottom: 0.25rem;
+    flex-wrap: wrap;
   }
   .context-card .brand-name {
     font-weight: 700;
@@ -220,13 +209,28 @@
   }
   .context-card .brand-delta.pos { color: var(--green-600); }
   .context-card .brand-delta.neg { color: var(--red-600); }
+  .context-card .tag {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .tag.retro { background: var(--green-100); color: var(--green-600); }
+  .tag.gap { background: var(--red-100); color: var(--red-600); }
+  .tag.prime { background: var(--purple-100); color: var(--purple-600); }
+  .tag.no-disc { background: var(--amber-100); color: var(--amber-600); }
+  .tag.t1 { background: var(--blue-100); color: var(--blue-600); }
+  .tag.t2 { background: var(--slate-200); color: var(--slate-700); }
+  .tag.t3 { background: var(--slate-100); color: var(--slate-500); }
   .context-card .context-text {
     font-size: 0.8125rem;
     color: var(--slate-600);
     line-height: 1.5;
   }
 
-  /* Takeaways */
   .takeaways {
     background: white;
     border: 1px solid var(--slate-200);
@@ -261,7 +265,6 @@
   }
   .takeaway .text strong { color: var(--slate-900); }
 
-  /* Footer */
   .footer {
     margin-top: 3rem;
     padding-top: 1.5rem;
@@ -271,7 +274,6 @@
     text-align: center;
   }
 
-  /* Responsive */
   @media (max-width: 640px) {
     .container { padding: 1rem; }
     .header h1 { font-size: 1.375rem; }
@@ -288,356 +290,748 @@
   <div class="header">
     <div class="header-top">
       <h1>NC Brand Sales Deep Dive</h1>
-      <span class="badge positive">&#9650; 8.1% WoW</span>
+      <span class="badge negative">-0.8% WoW</span>
     </div>
-    <p class="subtitle">w/c <strong>8 June</strong> vs w/c <strong>15 June 2026</strong> &middot; Prepared by Siddhansh Arora, Head of Trading</p>
+    <p class="subtitle">
+      <strong>w/c 15 Jun vs 22 Jun 2026</strong> &mdash; New customer net sales by brand. Prime Day week (23-26 Jun) drove tech gainers while retro windows closed on supplements. Retro coverage from HX dashboard, #promos, NC measurement sheet.
+    </p>
   </div>
 
   <!-- Stat cards -->
   <div class="stats">
     <div class="stat-card">
-      <div class="label">w/c 8 Jun</div>
-      <div class="value">&pound;513,838</div>
-    </div>
-    <div class="stat-card">
       <div class="label">w/c 15 Jun</div>
-      <div class="value">&pound;555,474</div>
+      <div class="value">&pound;555,484</div>
     </div>
     <div class="stat-card">
-      <div class="label">Change</div>
-      <div class="value">+&pound;41,636</div>
-      <div class="delta positive">+8.1% week-on-week</div>
+      <div class="label">w/c 22 Jun</div>
+      <div class="value">&pound;551,152</div>
+      <div class="delta negative">&darr; &pound;4,331 (-0.8%)</div>
     </div>
     <div class="stat-card">
-      <div class="label">Brands Moving</div>
-      <div class="value">267 &#9650; / 222 &#9660;</div>
-      <div class="delta positive">Broad-based rebound</div>
+      <div class="label">2-week trend (w/c 8 &rarr; 22)</div>
+      <div class="value">+7.3%</div>
+      <div class="delta positive">&uarr; &pound;37,437 from w/c 8 Jun</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Retro landscape (June)</div>
+      <div class="value">40 / 100</div>
+      <div class="delta" style="color: var(--amber-600);">Top-100 brands with active retro &bull; 60 gaps</div>
+    </div>
+  </div>
+
+  <!-- Top 20 NC Brands -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon blue">&#x1f3c6;</div>
+      <h2>Top 20 NC brands &mdash; w/c 22 Jun</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Brand</th>
+            <th>w/c 8 Jun</th>
+            <th>w/c 15 Jun</th>
+            <th>w/c 22 Jun</th>
+            <th>&Delta; &pound;</th>
+            <th>&Delta; %</th>
+            <th>Retro status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-green">
+            <td>1</td><td>WHOOP</td>
+            <td>&pound;23,200</td><td>&pound;20,038</td><td>&pound;33,664</td>
+            <td class="val-pos">+&pound;13,626</td><td class="val-pos">+68%</td>
+            <td><span class="tag prime">Prime Day</span> 23-26 Jun</td>
+          </tr>
+          <tr class="row-red">
+            <td>2</td><td>Thorne</td>
+            <td>&pound;28,920</td><td>&pound;33,782</td><td>&pound;31,334</td>
+            <td class="val-neg">-&pound;2,449</td><td class="val-neg">-7%</td>
+            <td><span class="tag gap">Gap</span></td>
+          </tr>
+          <tr class="row-green">
+            <td>3</td><td>LMNT</td>
+            <td>&pound;16,258</td><td>&pound;18,011</td><td>&pound;25,357</td>
+            <td class="val-pos">+&pound;7,346</td><td class="val-pos">+41%</td>
+            <td><span class="tag gap">Gap</span></td>
+          </tr>
+          <tr class="row-green">
+            <td>4</td><td>COROS</td>
+            <td>&pound;12,601</td><td>&pound;16,739</td><td>&pound;22,653</td>
+            <td class="val-pos">+&pound;5,914</td><td class="val-pos">+35%</td>
+            <td><span class="tag gap">T1 Gap</span> <span class="tag no-disc">MAP</span></td>
+          </tr>
+          <tr class="row-red">
+            <td>5</td><td>Oura Ring</td>
+            <td>&pound;30,349</td><td>&pound;28,286</td><td>&pound;20,597</td>
+            <td class="val-neg">-&pound;7,689</td><td class="val-neg">-27%</td>
+            <td><span class="tag prime">Prime Day</span> 23-26 Jun</td>
+          </tr>
+          <tr class="row-red">
+            <td>6</td><td>Pure Encapsulations</td>
+            <td>&pound;16,129</td><td>&pound;19,510</td><td>&pound;15,458</td>
+            <td class="val-neg">-&pound;4,052</td><td class="val-neg">-21%</td>
+            <td><span class="tag retro">Retro</span> 19-22 Jun (vol.)</td>
+          </tr>
+          <tr class="row-red">
+            <td>7</td><td>Healf</td>
+            <td>&pound;23,352</td><td>&pound;24,357</td><td>&pound;14,453</td>
+            <td class="val-neg">-&pound;9,904</td><td class="val-neg">-41%</td>
+            <td>Healf Zone</td>
+          </tr>
+          <tr class="row-green">
+            <td>8</td><td>Momentous</td>
+            <td>&pound;9,139</td><td>&pound;11,406</td><td>&pound;12,002</td>
+            <td class="val-pos">+&pound;596</td><td class="val-pos">+5%</td>
+            <td><span class="tag retro">Retro</span> stacked windows to 30 Jun</td>
+          </tr>
+          <tr class="row-green">
+            <td>9</td><td>Transparent Labs</td>
+            <td>&pound;8,726</td><td>&pound;8,866</td><td>&pound;10,400</td>
+            <td class="val-pos">+&pound;1,534</td><td class="val-pos">+17%</td>
+            <td><span class="tag gap">Gap</span></td>
+          </tr>
+          <tr class="row-red">
+            <td>10</td><td>Aarke</td>
+            <td>&pound;14,532</td><td>&pound;11,892</td><td>&pound;9,861</td>
+            <td class="val-neg">-&pound;2,030</td><td class="val-neg">-17%</td>
+            <td><span class="tag prime">Prime Day</span> 23 Jun-19 Jul</td>
+          </tr>
+          <tr class="row-green">
+            <td>11</td><td>Blueprint</td>
+            <td>&pound;3,760</td><td>&pound;6,549</td><td>&pound;8,557</td>
+            <td class="val-pos">+&pound;2,008</td><td class="val-pos">+31%</td>
+            <td><span class="tag gap">T1 Gap</span></td>
+          </tr>
+          <tr class="row-red">
+            <td>12</td><td>Nordic Naturals</td>
+            <td>&pound;8,538</td><td>&pound;8,282</td><td>&pound;8,140</td>
+            <td class="val-neg">-&pound;141</td><td class="val-neg">-2%</td>
+            <td><span class="tag gap">Gap</span></td>
+          </tr>
+          <tr class="row-green">
+            <td>13</td><td>Nurosym</td>
+            <td>&pound;3,170</td><td>&pound;5,211</td><td>&pound;7,882</td>
+            <td class="val-pos">+&pound;2,671</td><td class="val-pos">+51%</td>
+            <td><span class="tag retro">Retro</span> 15-24 Jun 10% co-fund</td>
+          </tr>
+          <tr class="row-red">
+            <td>14</td><td>Withings</td>
+            <td>&pound;14,417</td><td>&pound;11,898</td><td>&pound;7,418</td>
+            <td class="val-neg">-&pound;4,479</td><td class="val-neg">-38%</td>
+            <td><span class="tag retro">Retro</span> 10-24 Jun + 27 Jun-8 Jul</td>
+          </tr>
+          <tr class="row-green">
+            <td>15</td><td>Codeage</td>
+            <td>&pound;4,305</td><td>&pound;5,109</td><td>&pound;6,686</td>
+            <td class="val-pos">+&pound;1,577</td><td class="val-pos">+31%</td>
+            <td><span class="tag gap">Gap</span></td>
+          </tr>
+          <tr class="row-red">
+            <td>16</td><td>Therabody</td>
+            <td>&pound;10,811</td><td>&pound;7,373</td><td>&pound;6,589</td>
+            <td class="val-neg">-&pound;784</td><td class="val-neg">-11%</td>
+            <td><span class="tag retro">Retro</span> 10-23 Jun <span class="tag no-disc">No-disc</span></td>
+          </tr>
+          <tr class="row-green">
+            <td>17</td><td>Our Place</td>
+            <td>&pound;5,853</td><td>&pound;2,966</td><td>&pound;6,358</td>
+            <td class="val-pos">+&pound;3,393</td><td class="val-pos">+114%</td>
+            <td><span class="tag prime">Prime Day</span> 23-26 Jun</td>
+          </tr>
+          <tr class="row-green">
+            <td>18</td><td>BodyHealth</td>
+            <td>&pound;4,364</td><td>&pound;5,560</td><td>&pound;6,114</td>
+            <td class="val-pos">+&pound;553</td><td class="val-pos">+10%</td>
+            <td><span class="tag gap">Gap</span></td>
+          </tr>
+          <tr>
+            <td>19</td><td>Kiki Health</td>
+            <td>&pound;5,338</td><td>&pound;5,935</td><td>&pound;5,908</td>
+            <td>-&pound;27</td><td>-0%</td>
+            <td><span class="tag retro">Retro</span> 15-29 Jun</td>
+          </tr>
+          <tr class="row-green">
+            <td>20</td><td>Humantra</td>
+            <td>&pound;3,141</td><td>&pound;2,737</td><td>&pound;5,847</td>
+            <td class="val-pos">+&pound;3,109</td><td class="val-pos">+114%</td>
+            <td><span class="tag gap">Gap</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
   <!-- GAINERS -->
   <div class="section">
     <div class="section-header">
-      <div class="icon green">&#9650;</div>
-      <h2>WoW Gainers</h2>
+      <div class="icon green">&#x2191;</div>
+      <h2>Gainers &mdash; w/c 15 &rarr; 22 Jun (13 brands, curated)</h2>
     </div>
 
     <div class="table-wrap">
       <table>
         <thead>
-          <tr><th>Brand</th><th>w/c 8 Jun</th><th>w/c 15 Jun</th><th>&Delta; &pound;</th><th>&Delta; %</th></tr>
+          <tr><th>Brand</th><th>w/c 8 Jun</th><th>w/c 15 Jun</th><th>w/c 22 Jun</th><th>&Delta; &pound;</th><th>&Delta; %</th></tr>
         </thead>
         <tbody>
-          <tr class="row-green"><td>Thorne</td><td>&pound;28,920</td><td>&pound;33,785</td><td class="val-pos">+&pound;4,865</td><td class="val-pos">+17%</td></tr>
-          <tr class="row-green"><td>COROS</td><td>&pound;12,601</td><td>&pound;16,739</td><td class="val-pos">+&pound;4,138</td><td class="val-pos">+33%</td></tr>
-          <tr class="row-green"><td>Pvolve</td><td>&pound;604</td><td>&pound;4,466</td><td class="val-pos">+&pound;3,862</td><td class="val-pos">+639%</td></tr>
-          <tr class="row-green"><td>Pure Encapsulations</td><td>&pound;16,129</td><td>&pound;19,510</td><td class="val-pos">+&pound;3,381</td><td class="val-pos">+21%</td></tr>
-          <tr class="row-green"><td>Blueprint</td><td>&pound;3,760</td><td>&pound;6,549</td><td class="val-pos">+&pound;2,790</td><td class="val-pos">+74%</td></tr>
-          <tr class="row-green"><td>Lumie</td><td>&pound;949</td><td>&pound;3,635</td><td class="val-pos">+&pound;2,685</td><td class="val-pos">+283%</td></tr>
-          <tr class="row-green"><td>Momentous</td><td>&pound;9,139</td><td>&pound;11,406</td><td class="val-pos">+&pound;2,267</td><td class="val-pos">+25%</td></tr>
-          <tr class="row-green"><td>Black+Blum</td><td>&pound;3,382</td><td>&pound;5,492</td><td class="val-pos">+&pound;2,110</td><td class="val-pos">+62%</td></tr>
-          <tr class="row-green"><td>Nurosym</td><td>&pound;3,170</td><td>&pound;5,211</td><td class="val-pos">+&pound;2,042</td><td class="val-pos">+64%</td></tr>
-          <tr class="row-green"><td>Wild Nutrition</td><td>&pound;1,973</td><td>&pound;3,741</td><td class="val-pos">+&pound;1,769</td><td class="val-pos">+90%</td></tr>
-          <tr class="row-green"><td>Bare Biology</td><td>&pound;2,733</td><td>&pound;4,439</td><td class="val-pos">+&pound;1,706</td><td class="val-pos">+62%</td></tr>
-          <tr class="row-green"><td>LMNT</td><td>&pound;16,381</td><td>&pound;18,011</td><td class="val-pos">+&pound;1,630</td><td class="val-pos">+10%</td></tr>
-          <tr class="row-green"><td>Metagenics</td><td>&pound;3,515</td><td>&pound;6,022</td><td class="val-pos">+&pound;2,507</td><td class="val-pos">+71%</td></tr>
+          <tr class="row-green"><td>WHOOP</td><td>&pound;23,200</td><td>&pound;20,038</td><td>&pound;33,664</td><td class="val-pos">+&pound;13,626</td><td class="val-pos">+68%</td></tr>
+          <tr class="row-green"><td>LMNT</td><td>&pound;16,258</td><td>&pound;18,011</td><td>&pound;25,357</td><td class="val-pos">+&pound;7,346</td><td class="val-pos">+41%</td></tr>
+          <tr class="row-green"><td>COROS</td><td>&pound;12,601</td><td>&pound;16,739</td><td>&pound;22,653</td><td class="val-pos">+&pound;5,914</td><td class="val-pos">+35%</td></tr>
+          <tr class="row-green"><td>LYMA</td><td>&pound;6,164</td><td>&pound;177</td><td>&pound;4,886</td><td class="val-pos">+&pound;4,709</td><td class="val-pos">+2,656%</td></tr>
+          <tr class="row-green"><td>Our Place</td><td>&pound;5,853</td><td>&pound;2,966</td><td>&pound;6,358</td><td class="val-pos">+&pound;3,393</td><td class="val-pos">+114%</td></tr>
+          <tr class="row-green"><td>Lifepro</td><td>&pound;352</td><td>&pound;2,279</td><td>&pound;5,521</td><td class="val-pos">+&pound;3,242</td><td class="val-pos">+142%</td></tr>
+          <tr class="row-green"><td>Humantra</td><td>&pound;3,141</td><td>&pound;2,737</td><td>&pound;5,847</td><td class="val-pos">+&pound;3,109</td><td class="val-pos">+114%</td></tr>
+          <tr class="row-green"><td>Garmin</td><td>&pound;787</td><td>&pound;1,251</td><td>&pound;4,344</td><td class="val-pos">+&pound;3,093</td><td class="val-pos">+247%</td></tr>
+          <tr class="row-green"><td>Nurosym</td><td>&pound;3,170</td><td>&pound;5,211</td><td>&pound;7,882</td><td class="val-pos">+&pound;2,671</td><td class="val-pos">+51%</td></tr>
+          <tr class="row-green"><td>HigherDOSE</td><td>&pound;5,166</td><td>&pound;3,657</td><td>&pound;5,808</td><td class="val-pos">+&pound;2,151</td><td class="val-pos">+59%</td></tr>
+          <tr class="row-green"><td>Blueprint</td><td>&pound;3,760</td><td>&pound;6,549</td><td>&pound;8,557</td><td class="val-pos">+&pound;2,008</td><td class="val-pos">+31%</td></tr>
+          <tr class="row-green"><td>Codeage</td><td>&pound;4,305</td><td>&pound;5,109</td><td>&pound;6,686</td><td class="val-pos">+&pound;1,577</td><td class="val-pos">+31%</td></tr>
+          <tr class="row-green"><td>Maurten</td><td>&pound;3,060</td><td>&pound;1,837</td><td>&pound;3,408</td><td class="val-pos">+&pound;1,571</td><td class="val-pos">+86%</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="context-list">
+
       <div class="context-card green">
         <div class="brand-line">
-          <span class="brand-name">Thorne</span>
-          <span class="brand-delta pos">+&pound;4,865 (+17%)</span>
+          <span class="brand-name">WHOOP</span>
+          <span class="brand-delta pos">+&pound;13,626 (+68%)</span>
+          <span class="tag prime">Prime Day</span>
+          <span class="tag t1">T1</span>
         </div>
-        <p class="context-text">Bounce-back after 3 consecutive weaker weeks. Returns normalising after 58% spike last week. NC settling back towards run rate after softer spring performance.</p>
+        <p class="context-text">
+          <strong>Retro: 23-26 Jun</strong> (Prime Day window, exact times required by brand). Biggest single-brand gain this week. The Prime Day retro kicked in on 23 Jun - most of the uplift falls in the w/c 22 data. Karina managing. A new comp (a1techdeals) was flagged undercutting in May - brand partner team investigating. Google Pixel Watch launch creating category-level competition, but WHOOP's Prime Day pricing appears to be overriding the headwind.
+        </p>
       </div>
-      <div class="context-card green">
-        <div class="brand-line">
-          <span class="brand-name">COROS</span>
-          <span class="brand-delta pos">+&pound;4,138 (+33%)</span>
-        </div>
-        <p class="context-text">Recovery +33% despite MAP enforcement and no retro (T1 gap - Karina). Comps (CJ Performance Cycles, Balfes Bikes, Team Cycles) still discounting as of 17 Jun. Cannot discount - margin threshold at 15%. One of the largest T1 brands with no promotional support.</p>
-      </div>
-      <div class="context-card green">
-        <div class="brand-line">
-          <span class="brand-name">Pvolve</span>
-          <span class="brand-delta pos">+&pound;3,862 (+639%)</span>
-        </div>
-        <p class="context-text">Exclusive retro launched 15 Jun, running to 27 Jun (T2 two-day flash format). $4K cap on brand funding. NC jumped from &pound;604 to &pound;4.5k.</p>
-      </div>
-      <div class="context-card green">
-        <div class="brand-line">
-          <span class="brand-name">Pure Encapsulations</span>
-          <span class="brand-delta pos">+&pound;3,381 (+21%)</span>
-        </div>
-        <p class="context-text">Bounce-back +21% after trend flattening. Returns normalising (were +24% last week). Volume retro 19-22 Jun (T1, Steph - triggers at units &gt;650/day). Core NC brand recovering alongside Thorne.</p>
-      </div>
-      <div class="context-card green">
-        <div class="brand-line">
-          <span class="brand-name">Blueprint</span>
-          <span class="brand-delta pos">+&pound;2,790 (+74%)</span>
-        </div>
-        <p class="context-text">Strong uptick +74% with no retro (T1 gap - Justin). Brand pushing for 5% subs discount cap - pricing negotiations ongoing. Growing this fast without promotional support. One of the largest T1 brands without a retro alongside COROS.</p>
-      </div>
-      <div class="context-card green">
-        <div class="brand-line">
-          <span class="brand-name">Lumie</span>
-          <span class="brand-delta pos">+&pound;2,685 (+283%)</span>
-        </div>
-        <p class="context-text">Retro running 15-29 Jun (outside top 100 in HX dashboard). NC jumped from &pound;949 to &pound;3.6k. Strong first-week performance.</p>
-      </div>
-      <div class="context-card green">
-        <div class="brand-line">
-          <span class="brand-name">Momentous</span>
-          <span class="brand-delta pos">+&pound;2,267 (+25%)</span>
-        </div>
-        <p class="context-text">Recovery +25% driven by three stacked retro windows (T1, Justin): sub-only 4-23 Jun, Creatine 90 Serve 25% off 12-30 Jun, and Creatine Chews 25% off 15-21 Jun. iHerb still undercutting UK pricing. Stock being shipped to EU fulfilment (Active Ants).</p>
-      </div>
-      <div class="context-card green">
-        <div class="brand-line">
-          <span class="brand-name">Black+Blum</span>
-          <span class="brand-delta pos">+&pound;2,110 (+62%)</span>
-        </div>
-        <p class="context-text">NC jumped from &pound;3.4k to &pound;5.5k. HX dashboard shows retro window is 22-29 Jun - growth this week appears to be pre-retro organic demand. Monitor for further uplift next week.</p>
-      </div>
-      <div class="context-card green">
-        <div class="brand-line">
-          <span class="brand-name">Nurosym</span>
-          <span class="brand-delta pos">+&pound;2,042 (+64%)</span>
-        </div>
-        <p class="context-text">Exclusive retro 15-24 Jun at 10% co-funded (T2, Conor). NC jumped from &pound;3.2k to &pound;5.2k.</p>
-      </div>
-      <div class="context-card green">
-        <div class="brand-line">
-          <span class="brand-name">Wild Nutrition</span>
-          <span class="brand-delta pos">+&pound;1,769 (+90%)</span>
-        </div>
-        <p class="context-text">Strong recovery +90%. T3 retro running (Steph). Matching rules: only Bodykind, W-Wellness, Amazon. NC rebounding from prior low base.</p>
-      </div>
-      <div class="context-card green">
-        <div class="brand-line">
-          <span class="brand-name">Bare Biology</span>
-          <span class="brand-delta pos">+&pound;1,706 (+62%)</span>
-        </div>
-        <p class="context-text">Pre-retro momentum +62%. 20% Healf-funded retro starting 19 Jun (running 19-21 Jun). No-discount brand otherwise. W-Wellness still not delisted.</p>
-      </div>
+
       <div class="context-card green">
         <div class="brand-line">
           <span class="brand-name">LMNT</span>
-          <span class="brand-delta pos">+&pound;1,630 (+10%)</span>
+          <span class="brand-delta pos">+&pound;7,346 (+41%)</span>
+          <span class="tag gap">Gap</span>
         </div>
-        <p class="context-text">Recovery +10% after 3 consecutive weeks of decline. No retro. Customers had flagged cheaper alternatives. No pricing changes - organic bounce-back without promotional support.</p>
+        <p class="context-text">
+          <strong>No retro secured for June.</strong> This is pure organic demand recovery after a soft w/c 8 Jun (&pound;16.3k). Three-week uptrend: &pound;16.3k &rarr; &pound;18.0k &rarr; &pound;25.4k. Seasonal tailwind likely - summer hydration category. No pricing changes flagged in #discounting-issues. One of the biggest NC brands with no retro - worth chasing for July.
+        </p>
       </div>
+
       <div class="context-card green">
         <div class="brand-line">
-          <span class="brand-name">Metagenics</span>
-          <span class="brand-delta pos">+&pound;2,507 (+71%)</span>
+          <span class="brand-name">COROS</span>
+          <span class="brand-delta pos">+&pound;5,914 (+35%)</span>
+          <span class="tag gap">T1 Gap</span>
+          <span class="tag no-disc">MAP enforced</span>
         </div>
-        <p class="context-text">Retro running 15-29 Jun (x2 stacked windows). NC jumped from &pound;3.5k to &pound;6.0k. Retro-driven uplift.</p>
+        <p class="context-text">
+          <strong>No retro. T1 gap (Karina).</strong> Brand enforcing strict MAP - threatened to stop orders over discounting. Healf reverted all undercutting, removed from NEW10. Comps (CJ Performance, Balfes Bikes, Team Cycles) still discounting as of 17 Jun despite repeated escalations. Growth is entirely organic demand, not pricing-driven. Karina's 23 Jun note: "match the market if any competitors start undercutting - pricing looks stable for now."
+        </p>
       </div>
+
+      <div class="context-card green">
+        <div class="brand-line">
+          <span class="brand-name">LYMA</span>
+          <span class="brand-delta pos">+&pound;4,709</span>
+          <span class="tag no-disc">No-disc brand</span>
+        </div>
+        <p class="context-text">
+          <strong>No retro. Strict no-discount brand.</strong> Recovering from a near-zero w/c 15 (&pound;177). LYMA is inherently volatile (high-ticket laser device). Brand actively tracks Healf's promotional activity - "sneaky weekend discounting" flagged in May. Healf holding RRP with NEW10/NEW15 only. Comps still not reverting despite repeated flags (latest: 2 Jun). The bounce is normalisation, not a structural shift.
+        </p>
+      </div>
+
+      <div class="context-card green">
+        <div class="brand-line">
+          <span class="brand-name">Our Place</span>
+          <span class="brand-delta pos">+&pound;3,393 (+114%)</span>
+          <span class="tag prime">Prime Day</span>
+          <span class="tag t1">T1</span>
+        </div>
+        <p class="context-text">
+          <strong>Retro: 23-26 Jun</strong> (Prime Day). No-bid brand - can't bid on brand terms. Persistent comp undercutting from Fenwick, Liberty, Amazon, D2C. Funding gap on latest matched SKUs (flagged 2 Jun). Titanium collection funding secured Apr 2026. Prime Day retro is the driver this week - strong recovery from a weak w/c 15 (&pound;3.0k).
+        </p>
+      </div>
+
+      <div class="context-card green">
+        <div class="brand-line">
+          <span class="brand-name">Humantra</span>
+          <span class="brand-delta pos">+&pound;3,109 (+114%)</span>
+          <span class="tag gap">Gap</span>
+        </div>
+        <p class="context-text">
+          <strong>No retro.</strong> Boots actively undercutting with structural pricing advantage (primary distribution channel). 15 SKUs discontinued. OOH campaign in Aug 2025 directed customers to Boots. Limited ability to compete on cost per serving. The +114% is a bounce from a low base - still below the &pound;6k+ weekly run rate from earlier in 2026.
+        </p>
+      </div>
+
+      <div class="context-card green">
+        <div class="brand-line">
+          <span class="brand-name">Nurosym</span>
+          <span class="brand-delta pos">+&pound;2,671 (+51%)</span>
+          <span class="tag retro">Retro</span>
+          <span class="tag t2">T2</span>
+        </div>
+        <p class="context-text">
+          <strong>Retro: 15-24 Jun, 10% co-fund (Conor).</strong> Three-week uptrend: &pound;3.2k &rarr; &pound;5.2k &rarr; &pound;7.9k. The co-funded retro is clearly working - Nurosym has more than doubled since the retro started. Retro window closes 24 Jun - watch for pullback next week. One of the best retro-to-sales conversion rates this cycle.
+        </p>
+      </div>
+
+      <div class="context-card green">
+        <div class="brand-line">
+          <span class="brand-name">HigherDOSE</span>
+          <span class="brand-delta pos">+&pound;2,151 (+59%)</span>
+          <span class="tag retro">Retro</span>
+          <span class="tag t1">T1</span>
+        </div>
+        <p class="context-text">
+          <strong>Retro: 19-21 Jun, 20% brand-funded.</strong> Exclusive with Healf - good margin. #2 priority redlight brand behind Omnilux. High-ticket items create inherent volatility. Retro window was only 3 days (19-21 Jun) so the uplift captured in w/c 22 data is the tail. Strong signal that short retro windows still convert for premium brands.
+        </p>
+      </div>
+
+      <div class="context-card green">
+        <div class="brand-line">
+          <span class="brand-name">Blueprint</span>
+          <span class="brand-delta pos">+&pound;2,008 (+31%)</span>
+          <span class="tag gap">T1 Gap</span>
+        </div>
+        <p class="context-text">
+          <strong>No retro. T1 gap (Justin).</strong> Third consecutive week of growth: &pound;3.8k &rarr; &pound;6.5k &rarr; &pound;8.6k. Brand asking Healf to align to their pricing structure with only 5% subs discount - team pushing back. Organic demand is strong. No retro and still climbing - suggests the brand has genuine NC momentum. Worth prioritising for a July retro window.
+        </p>
+      </div>
+
+      <div class="context-card green">
+        <div class="brand-line">
+          <span class="brand-name">Maurten</span>
+          <span class="brand-delta pos">+&pound;1,571 (+86%)</span>
+          <span class="tag no-disc">RRP hold</span>
+        </div>
+        <p class="context-text">
+          <strong>No retro. Holding RRP.</strong> Brand asked Healf to revert to RRP in April. Comps (Achilles Heel, Run North West, Condor Cycles, Start Fitness) still discounting - some bait pricing in Google Shopping (lower Shopping price, checkout at RRP). Seasonal category (gels/drink mixes) - summer dip expected. This week's bounce may be event-driven (running season). Top SKU sales down 20-57% MoM per 9 Jun update.
+        </p>
+      </div>
+
+      <div class="context-card green">
+        <div class="brand-line">
+          <span class="brand-name">Garmin</span>
+          <span class="brand-delta pos">+&pound;3,093 (+247%)</span>
+        </div>
+        <p class="context-text">
+          Likely Prime Day related - Garmin is a major Amazon Prime Day brand. Jump from &pound;1.3k to &pound;4.3k suggests customers finding Healf via price comparison during Prime Day shopping window.
+        </p>
+      </div>
+
+      <div class="context-card green">
+        <div class="brand-line">
+          <span class="brand-name">Lifepro</span>
+          <span class="brand-delta pos">+&pound;3,242 (+142%)</span>
+        </div>
+        <p class="context-text">
+          Volatile brand with low baseline. Jumped from &pound;352 (w/c 8) to &pound;5.5k (w/c 22). Likely Prime Day / tech deal activity driving interest in fitness equipment. Not in retro brief.
+        </p>
+      </div>
+
+      <div class="context-card green">
+        <div class="brand-line">
+          <span class="brand-name">Codeage</span>
+          <span class="brand-delta pos">+&pound;1,577 (+31%)</span>
+          <span class="tag gap">Gap</span>
+        </div>
+        <p class="context-text">
+          <strong>No retro.</strong> Steady climber - back to &pound;6.7k after a dip in w/c 8 Jun (&pound;4.3k). No pricing issues flagged. Growing consistently without promotional support.
+        </p>
+      </div>
+
     </div>
   </div>
 
   <!-- DECLINERS -->
   <div class="section">
     <div class="section-header">
-      <div class="icon red">&#9660;</div>
-      <h2>WoW Decliners</h2>
+      <div class="icon red">&#x2193;</div>
+      <h2>Decliners &mdash; w/c 15 &rarr; 22 Jun (13 brands, curated)</h2>
     </div>
 
     <div class="table-wrap">
       <table>
         <thead>
-          <tr><th>Brand</th><th>w/c 8 Jun</th><th>w/c 15 Jun</th><th>&Delta; &pound;</th><th>&Delta; %</th></tr>
+          <tr><th>Brand</th><th>w/c 8 Jun</th><th>w/c 15 Jun</th><th>w/c 22 Jun</th><th>&Delta; &pound;</th><th>&Delta; %</th></tr>
         </thead>
         <tbody>
-          <tr class="row-red"><td>LYMA</td><td>&pound;6,164</td><td>&pound;177</td><td class="val-neg">&minus;&pound;5,986</td><td class="val-neg">-97%</td></tr>
-          <tr class="row-red"><td>Therabody</td><td>&pound;10,811</td><td>&pound;7,373</td><td class="val-neg">&minus;&pound;3,438</td><td class="val-neg">-32%</td></tr>
-          <tr class="row-red"><td>WHOOP</td><td>&pound;23,200</td><td>&pound;20,038</td><td class="val-neg">&minus;&pound;3,162</td><td class="val-neg">-14%</td></tr>
-          <tr class="row-red"><td>Our Place</td><td>&pound;5,853</td><td>&pound;2,966</td><td class="val-neg">&minus;&pound;2,888</td><td class="val-neg">-49%</td></tr>
-          <tr class="row-red"><td>Aarke</td><td>&pound;14,532</td><td>&pound;11,892</td><td class="val-neg">&minus;&pound;2,640</td><td class="val-neg">-18%</td></tr>
-          <tr class="row-red"><td>Withings</td><td>&pound;14,417</td><td>&pound;11,898</td><td class="val-neg">&minus;&pound;2,520</td><td class="val-neg">-17%</td></tr>
-          <tr class="row-red"><td>Oura Ring</td><td>&pound;30,349</td><td>&pound;28,274</td><td class="val-neg">&minus;&pound;2,075</td><td class="val-neg">-7%</td></tr>
-          <tr class="row-red"><td>HigherDOSE</td><td>&pound;5,166</td><td>&pound;3,657</td><td class="val-neg">&minus;&pound;1,509</td><td class="val-neg">-29%</td></tr>
-          <tr class="row-red"><td>Maurten</td><td>&pound;3,060</td><td>&pound;1,837</td><td class="val-neg">&minus;&pound;1,223</td><td class="val-neg">-40%</td></tr>
+          <tr class="row-red"><td>Healf</td><td>&pound;23,352</td><td>&pound;24,357</td><td>&pound;14,453</td><td class="val-neg">-&pound;9,904</td><td class="val-neg">-41%</td></tr>
+          <tr class="row-red"><td>Oura Ring</td><td>&pound;30,349</td><td>&pound;28,286</td><td>&pound;20,597</td><td class="val-neg">-&pound;7,689</td><td class="val-neg">-27%</td></tr>
+          <tr class="row-red"><td>Withings</td><td>&pound;14,417</td><td>&pound;11,898</td><td>&pound;7,418</td><td class="val-neg">-&pound;4,479</td><td class="val-neg">-38%</td></tr>
+          <tr class="row-red"><td>Pure Encapsulations</td><td>&pound;16,129</td><td>&pound;19,510</td><td>&pound;15,458</td><td class="val-neg">-&pound;4,052</td><td class="val-neg">-21%</td></tr>
+          <tr class="row-red"><td>Fellow</td><td>&pound;7,615</td><td>&pound;7,626</td><td>&pound;3,576</td><td class="val-neg">-&pound;4,050</td><td class="val-neg">-53%</td></tr>
+          <tr class="row-red"><td>Smeg</td><td>&pound;431</td><td>&pound;4,057</td><td>&pound;761</td><td class="val-neg">-&pound;3,297</td><td class="val-neg">-81%</td></tr>
+          <tr class="row-red"><td>nama</td><td>&pound;4,592</td><td>&pound;6,019</td><td>&pound;3,012</td><td class="val-neg">-&pound;3,007</td><td class="val-neg">-50%</td></tr>
+          <tr class="row-red"><td>Lumie</td><td>&pound;949</td><td>&pound;3,635</td><td>&pound;654</td><td class="val-neg">-&pound;2,981</td><td class="val-neg">-82%</td></tr>
+          <tr class="row-red"><td>Thorne</td><td>&pound;28,920</td><td>&pound;33,782</td><td>&pound;31,334</td><td class="val-neg">-&pound;2,449</td><td class="val-neg">-7%</td></tr>
+          <tr class="row-red"><td>Pvolve</td><td>&pound;604</td><td>&pound;4,466</td><td>&pound;2,067</td><td class="val-neg">-&pound;2,399</td><td class="val-neg">-54%</td></tr>
+          <tr class="row-red"><td>Aarke</td><td>&pound;14,532</td><td>&pound;11,892</td><td>&pound;9,861</td><td class="val-neg">-&pound;2,030</td><td class="val-neg">-17%</td></tr>
+          <tr class="row-red"><td>Metagenics</td><td>&pound;3,515</td><td>&pound;6,022</td><td>&pound;4,077</td><td class="val-neg">-&pound;1,945</td><td class="val-neg">-32%</td></tr>
+          <tr class="row-red"><td>BON CHARGE</td><td>&pound;4,093</td><td>&pound;4,423</td><td>&pound;2,550</td><td class="val-neg">-&pound;1,873</td><td class="val-neg">-42%</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="context-list">
+
       <div class="context-card red">
         <div class="brand-line">
-          <span class="brand-name">LYMA</span>
-          <span class="brand-delta neg">&minus;&pound;5,986 (-97%)</span>
+          <span class="brand-name">Healf (Healf Zone)</span>
+          <span class="brand-delta neg">-&pound;9,904 (-41%)</span>
         </div>
-        <p class="context-text">Cyclical - Laser Starter Kit sales dropped from &pound;6.2k to &pound;177 as expected. High-ticket brand with inherent WoW lumpiness. No pricing changes.</p>
+        <p class="context-text">
+          Largest absolute decline. Healf Zone membership sales dropped from &pound;24.4k to &pound;14.5k after two strong weeks above &pound;23k. This is Healf's own product - not driven by external retro or pricing factors. Likely promotional cadence / campaign timing. Investigate whether Zone marketing spend pulled back w/c 22 or if a campaign ended.
+        </p>
       </div>
-      <div class="context-card red">
-        <div class="brand-line">
-          <span class="brand-name">Therabody</span>
-          <span class="brand-delta neg">&minus;&pound;3,438 (-32%)</span>
-        </div>
-        <p class="context-text">Retro running 10-23 Jun (T1, Karina) but NC declined 32%. Comps undercutting even the retro pricing on some SKUs (flagged 15 Jun). Strict no-discount outside retro windows. Follow-up July retro confirmed 1-10 Jul.</p>
-      </div>
-      <div class="context-card red">
-        <div class="brand-line">
-          <span class="brand-name">WHOOP</span>
-          <span class="brand-delta neg">&minus;&pound;3,162 (-14%)</span>
-        </div>
-        <p class="context-text">NC declined 14%. No retro this week - Prime Day blackout prevents discounting before 23 Jun (T1, Karina). Retro 23-26 Jun confirmed (exact 12:00 AM-11:59 PM times required by brand). Comp (a1techdeals) still undercutting. Google fitness band Air creating category competition.</p>
-      </div>
-      <div class="context-card red">
-        <div class="brand-line">
-          <span class="brand-name">Our Place</span>
-          <span class="brand-delta neg">&minus;&pound;2,888 (-49%)</span>
-        </div>
-        <p class="context-text">Continued post-promo normalisation - now -49% vs w/c 1 Jun baseline. No retro this week - Prime Day blackout prevents discounting before 23 Jun (T1, Karina). Retro 23-26 Jun confirmed (Prime Day). Full no-bid on brand terms. Funding gap on matched SKUs still unresolved.</p>
-      </div>
-      <div class="context-card red">
-        <div class="brand-line">
-          <span class="brand-name">Aarke</span>
-          <span class="brand-delta neg">&minus;&pound;2,640 (-18%)</span>
-        </div>
-        <p class="context-text">Declined 18%. No retro this week - Prime Day blackout (T1, Karina). Extended retro 23 Jun - 19 Jul confirmed (Prime + extended window, longest of any T1 brand). MAP enforced with structured matching rules. Pre-promo softening expected.</p>
-      </div>
-      <div class="context-card red">
-        <div class="brand-line">
-          <span class="brand-name">Withings</span>
-          <span class="brand-delta neg">&minus;&pound;2,520 (-17%)</span>
-        </div>
-        <p class="context-text">Normalisation after exclusive retro spike (-17%). Retro still running until 24 Jun (T1, Karina), then second window 27 Jun - 8 Jul stacking into July. Self-funded at 20% with 10% COGS rebate on incremental volume. Settling into retro run rate.</p>
-      </div>
+
       <div class="context-card red">
         <div class="brand-line">
           <span class="brand-name">Oura Ring</span>
-          <span class="brand-delta neg">&minus;&pound;2,075 (-7%)</span>
+          <span class="brand-delta neg">-&pound;7,689 (-27%)</span>
+          <span class="tag prime">Prime Day</span>
+          <span class="tag t1">T1</span>
         </div>
-        <p class="context-text">Moderate decline -7%. No retro this week - Prime Day blackout (T1, Karina). Ring 5 live, holding RRP. Supply/finance issues flagged. Retro 23-26 Jun confirmed (Prime Day). Needle mover per retro dashboard.</p>
+        <p class="context-text">
+          <strong>Retro: 23-26 Jun</strong> (Prime Day). Three-week downtrend: &pound;30.3k &rarr; &pound;28.3k &rarr; &pound;20.6k. Ring 5 transition continues - demand deferral from Ring 4 to Ring 5. Relationship "sensitive" - brand partner team asked pricing team to revert to RRP during Ring 5 launch window. Amazon listing Ring 5 at &pound;399. Comps (Amazon, Boots, Currys, John Lewis) discounting up to 30% on Ring 4 clearance. Healf holding RRP per instruction. The Prime Day retro (23-26 Jun) should provide a bounce in next week's data.
+        </p>
       </div>
+
       <div class="context-card red">
         <div class="brand-line">
-          <span class="brand-name">HigherDOSE</span>
-          <span class="brand-delta neg">&minus;&pound;1,509 (-29%)</span>
+          <span class="brand-name">Withings</span>
+          <span class="brand-delta neg">-&pound;4,479 (-38%)</span>
+          <span class="tag retro">Retro</span>
+          <span class="tag t1">T1</span>
         </div>
-        <p class="context-text">Retro window 19-21 Jun at 20% brand-funded (T1, Karina) - most of w/c 15 Jun had no retro running, explaining the -29% NC decline. High-ticket volatility - weekly sales inherently lumpy. No follow-up retro confirmed for July yet.</p>
+        <p class="context-text">
+          <strong>Retro: 10-24 Jun + 27 Jun-8 Jul (Karina).</strong> Declining despite an active retro - three-week downtrend from the &pound;14.4k peak (w/c 8 Jun). The retro window stacks into July so there's continuity. The softening suggests the retro's initial impact has faded. Watch whether the second window (27 Jun-8 Jul) re-accelerates demand.
+        </p>
       </div>
+
       <div class="context-card red">
         <div class="brand-line">
-          <span class="brand-name">Maurten</span>
-          <span class="brand-delta neg">&minus;&pound;1,223 (-40%)</span>
+          <span class="brand-name">Pure Encapsulations</span>
+          <span class="brand-delta neg">-&pound;4,052 (-21%)</span>
+          <span class="tag retro">Retro</span>
+          <span class="tag t1">T1</span>
         </div>
-        <p class="context-text">Seasonal decline -40% with no retro (T2 gap - Steph). Comps still discounting (17 Jun weekly update: 5 comps flagged, some using bait pricing in Google Shopping). Holding RRP. Summer dip compounded by no promotional support. One of the largest T2 brands without a retro.</p>
+        <p class="context-text">
+          <strong>Retro: 19-22 Jun, volume-only (units &gt;650/day, Steph).</strong> Window closed on 22 Jun - the decline is expected post-retro pullback. Pure Encaps ran hot in w/c 15 (&pound;19.5k) during the retro window, now reverting to baseline (~&pound;15-16k). Normal retro mechanics. No pricing issues flagged.
+        </p>
       </div>
+
+      <div class="context-card red">
+        <div class="brand-line">
+          <span class="brand-name">Fellow</span>
+          <span class="brand-delta neg">-&pound;4,050 (-53%)</span>
+          <span class="tag gap">T1 Gap</span>
+        </div>
+        <p class="context-text">
+          <strong>No retro. T1 gap (Karina).</strong> Collapsed from &pound;7.6k to &pound;3.6k - biggest percentage drop among top brands. Fellow has been steady at &pound;7-8k for weeks and this is a sharp break. No pricing changes flagged. This is the same pattern as COROS (T1 gap, Karina) but without the organic demand to compensate. Priority retro chase for July.
+        </p>
+      </div>
+
+      <div class="context-card red">
+        <div class="brand-line">
+          <span class="brand-name">nama</span>
+          <span class="brand-delta neg">-&pound;3,007 (-50%)</span>
+          <span class="tag retro">Retro</span>
+          <span class="tag t1">T1</span>
+        </div>
+        <p class="context-text">
+          <strong>Retro: 15 &amp; 29 Jun (two-day flash, Karina).</strong> Between flash windows - the w/c 15 spike (&pound;6.0k) was the 15 Jun flash day, now in the trough before the next flash on 29 Jun. D2C and UKJuicers persistently undercutting - margin goes below 10% or negative on some SKUs. Conor escalated 8 May. Expected pattern for flash retros.
+        </p>
+      </div>
+
+      <div class="context-card red">
+        <div class="brand-line">
+          <span class="brand-name">Lumie</span>
+          <span class="brand-delta neg">-&pound;2,981 (-82%)</span>
+        </div>
+        <p class="context-text">
+          <strong>Retro: 15-29 Jun (from #promos).</strong> The w/c 15 spike (&pound;3.6k) appears to have been a single large order or campaign burst - now back to baseline (&pound;654). Lumie is a seasonal brand (SAD lights) trading at low volume in summer. The retro isn't sustaining volume at these levels.
+        </p>
+      </div>
+
+      <div class="context-card red">
+        <div class="brand-line">
+          <span class="brand-name">Thorne</span>
+          <span class="brand-delta neg">-&pound;2,449 (-7%)</span>
+          <span class="tag gap">Gap</span>
+        </div>
+        <p class="context-text">
+          <strong>No retro.</strong> Still the #2 NC brand at &pound;31.3k. The -7% is normal week-to-week fluctuation for a brand of this size. Thorne has been consistently in the &pound;28-34k range for the past month. No pricing issues. No concerns.
+        </p>
+      </div>
+
+      <div class="context-card red">
+        <div class="brand-line">
+          <span class="brand-name">Aarke</span>
+          <span class="brand-delta neg">-&pound;2,030 (-17%)</span>
+          <span class="tag prime">Prime Day</span>
+          <span class="tag t1">T1</span>
+        </div>
+        <p class="context-text">
+          <strong>Retro: 23 Jun-19 Jul (Prime Day + extended, Karina).</strong> Three-week downtrend: &pound;14.5k &rarr; &pound;11.9k &rarr; &pound;9.9k. Pre-retro softening before the Prime Day window opened on 23 Jun. Brand enforcing strict MAP with structured matching rules. Aarke D2C was undercutting Healf even with retro prices - Joefer matched (23 Jun). Karina at an Aarke event 23 Jun, gave pricing team latitude. Extended retro through 19 Jul should reverse this trend.
+        </p>
+      </div>
+
+      <div class="context-card red">
+        <div class="brand-line">
+          <span class="brand-name">Pvolve</span>
+          <span class="brand-delta neg">-&pound;2,399 (-54%)</span>
+          <span class="tag retro">Retro</span>
+          <span class="tag t2">T2</span>
+        </div>
+        <p class="context-text">
+          <strong>Retro: 15-27 Jun, two-day flash (Karina T2).</strong> Similar to nama - flash retro pattern creating spikes and troughs. The w/c 15 peak (&pound;4.5k) was the flash day. Still within the retro window (limit $4k) so the pullback suggests the flash day captures most of the demand. Small brand at this level.
+        </p>
+      </div>
+
+      <div class="context-card red">
+        <div class="brand-line">
+          <span class="brand-name">Metagenics</span>
+          <span class="brand-delta neg">-&pound;1,945 (-32%)</span>
+          <span class="tag retro">Retro</span>
+          <span class="tag t2">T2</span>
+        </div>
+        <p class="context-text">
+          <strong>Retro: 15-29 Jun x2 stacked (Steph T2).</strong> Declining within an active retro window - dropped from &pound;6.0k to &pound;4.1k despite two stacked retros. The retro boosted w/c 15 significantly (from &pound;3.5k baseline) but the effect is wearing off. Still above pre-retro baseline.
+        </p>
+      </div>
+
+      <div class="context-card red">
+        <div class="brand-line">
+          <span class="brand-name">BON CHARGE</span>
+          <span class="brand-delta neg">-&pound;1,873 (-42%)</span>
+          <span class="tag no-disc">No-bid</span>
+        </div>
+        <p class="context-text">
+          <strong>No June retro. July: 1-31 Jul 25% (full month, Mia/Justin).</strong> No-bid brand since Feb 2026 - phrase + exact match negated. #3 priority redlight brand. Missing Red Light Cap SKU still not on Healf (flagged Mar, buying team tagged). July retro should provide significant uplift. Current decline is the gap between promos.
+        </p>
+      </div>
+
+      <div class="context-card red">
+        <div class="brand-line">
+          <span class="brand-name">Smeg</span>
+          <span class="brand-delta neg">-&pound;3,297 (-81%)</span>
+        </div>
+        <p class="context-text">
+          One-week spike in w/c 15 (&pound;4.1k) now reverted to baseline (&pound;761). Likely a single large order or promotional burst. Not a regular NC driver at this level.
+        </p>
+      </div>
+
     </div>
   </div>
 
-  <!-- FURTHER INVESTIGATION -->
+  <!-- Brands for further investigation -->
   <div class="section">
     <div class="section-header">
-      <div class="icon amber">?</div>
-      <h2>Brands for Further Investigation</h2>
+      <div class="icon amber">&#x1f50d;</div>
+      <h2>Brands for further investigation</h2>
     </div>
+    <div class="context-list">
 
+      <div class="context-card amber">
+        <div class="brand-line">
+          <span class="brand-name">Biocare</span>
+          <span class="brand-delta neg">-&pound;2,219 (-35%)</span>
+          <span class="tag retro">Retro</span>
+          <span class="tag t1">T1</span>
+        </div>
+        <p class="context-text">
+          <strong>Retro: 15-29 Jun, 20% (Steph T1).</strong> Declining within an active funded retro. Dolphin Fitness undercutting on top 10 SKUs - weekly pricing update process in place. Dropped from &pound;6.3k to &pound;4.1k despite the 20% discount. Worth investigating whether comp matching is eroding the retro's effectiveness.
+        </p>
+      </div>
+
+      <div class="context-card amber">
+        <div class="brand-line">
+          <span class="brand-name">Bare Biology</span>
+          <span class="brand-delta neg">-&pound;1,276 (-29%)</span>
+          <span class="tag retro">Retro</span>
+          <span class="tag t1">T1</span>
+        </div>
+        <p class="context-text">
+          <strong>Retro: 19-21 Jun, 20% HX (Steph T1).</strong> Post-retro pullback - the 3-day window closed on 21 Jun. No-discount brand with 10% search impression share cap. W-Wellness still listed with ads running despite being dropped as a retailer. Bidding pulled back per brand request. Structural constraints limiting growth.
+        </p>
+      </div>
+
+      <div class="context-card amber">
+        <div class="brand-line">
+          <span class="brand-name">Therabody</span>
+          <span class="brand-delta neg">-&pound;784 (-11%)</span>
+          <span class="tag retro">Retro</span>
+          <span class="tag no-disc">No-disc</span>
+          <span class="tag t1">T1</span>
+        </div>
+        <p class="context-text">
+          <strong>Retro: 10-23 Jun + Jul 1-10 (Karina T1).</strong> Strict no-discount brand. Comps (Boots code TECH15/RUN20, A1Tech, Joybuy, others) undercutting even the retro pricing. Elaine flagged 15 Jun with screenshots. Father's Day retro ended 23 Jun. Karina's 23 Jun note: "we don't have a retro in place, but happy for us to match competitors until EOM." Last in redlight brand ranking - mass distribution, no support for Healf. Declining within retro window.
+        </p>
+      </div>
+
+      <div class="context-card amber">
+        <div class="brand-line">
+          <span class="brand-name">Reformed</span>
+          <span class="brand-delta pos">+&pound;1,569 (+429%)</span>
+        </div>
+        <p class="context-text">
+          Large percentage jump from a very small base (&pound;366 &rarr; &pound;1,935). Not in retro brief. Could be a new product launch or ad campaign. Worth monitoring - if sustained, this is meaningful NC growth from a newer brand.
+        </p>
+      </div>
+
+      <div class="context-card amber">
+        <div class="brand-line">
+          <span class="brand-name">Transparent Labs</span>
+          <span class="brand-delta pos">+&pound;1,534 (+17%)</span>
+          <span class="tag gap">Gap</span>
+        </div>
+        <p class="context-text">
+          <strong>No retro.</strong> Recovery to &pound;10.4k after two soft weeks. No pricing issues flagged. Consistently in the top 10 NC brands without any promotional support - strong organic demand.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Retro landscape snapshot -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon purple">&#x1f4ca;</div>
+      <h2>Retro landscape &mdash; June snapshot</h2>
+    </div>
     <div class="table-wrap">
       <table>
         <thead>
-          <tr><th>Brand</th><th>w/c 8 Jun</th><th>w/c 15 Jun</th><th>&Delta; &pound;</th><th>&Delta; %</th></tr>
+          <tr><th>Metric</th><th>Value</th></tr>
         </thead>
         <tbody>
-          <tr class="row-green"><td>Smeg</td><td>&pound;431</td><td>&pound;4,057</td><td class="val-pos">+&pound;3,626</td><td class="val-pos">+841%</td></tr>
-          <tr class="row-green"><td>The Ultimate Human</td><td>&pound;3,422</td><td>&pound;5,592</td><td class="val-pos">+&pound;2,169</td><td class="val-pos">+63%</td></tr>
-          <tr class="row-red"><td>Inhale H2</td><td>&pound;2,849</td><td>&pound;0</td><td class="val-neg">&minus;&pound;2,849</td><td class="val-neg">-100%</td></tr>
-          <tr class="row-red"><td>CELLER8</td><td>&pound;2,676</td><td>&pound;0</td><td class="val-neg">&minus;&pound;2,676</td><td class="val-neg">-100%</td></tr>
-          <tr class="row-red"><td>Blueair</td><td>&pound;3,560</td><td>&pound;1,333</td><td class="val-neg">&minus;&pound;2,227</td><td class="val-neg">-63%</td></tr>
-          <tr class="row-red"><td>Somavedic</td><td>&pound;2,772</td><td>&pound;626</td><td class="val-neg">&minus;&pound;2,146</td><td class="val-neg">-77%</td></tr>
+          <tr><td>Top 100 brands with June retro</td><td>40</td></tr>
+          <tr><td>Top 100 gaps</td><td>60</td></tr>
+          <tr><td>Additional retros outside top 100</td><td>66</td></tr>
+          <tr><td>Total active retros</td><td>107</td></tr>
+          <tr><td>July confirmed so far</td><td>7</td></tr>
+          <tr><td>July gaps (top 100)</td><td>93</td></tr>
         </tbody>
       </table>
     </div>
-
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Owner</th><th>Brands (top 100)</th><th>June retros</th><th>Coverage</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Karina</td><td>24</td><td>14</td><td>58%</td></tr>
+          <tr><td>Steph</td><td>36</td><td>16</td><td>44%</td></tr>
+          <tr><td>Conor</td><td>3</td><td>1</td><td>33%</td></tr>
+          <tr><td>Justin</td><td>8</td><td>0</td><td>0%</td></tr>
+          <tr><td>Mia</td><td>5</td><td>TBD</td><td>&mdash;</td></tr>
+        </tbody>
+      </table>
+    </div>
     <div class="context-list">
-      <div class="context-card amber">
-        <div class="brand-line"><span class="brand-name">Smeg</span></div>
-        <p class="context-text">Was in the 6 Jun mass SKU discontinuation but still generating &pound;4k NC. No clear driver. Under investigation.</p>
+      <div class="context-card purple">
+        <div class="brand-line"><span class="brand-name">Prime Day blackout context</span></div>
+        <p class="context-text">
+          Amazon Prime Day brands cannot be discounted before <strong>23 Jun</strong> - discounting earlier disqualifies them from Prime Day. This is why WHOOP, Oura Ring, Our Place, Aarke, and Hyperice retros all start on 23 Jun. Pre-23 Jun softening on these brands (Aarke -17%, Oura -27%) is expected - customers are holding purchases for the Prime Day window.
+        </p>
       </div>
-      <div class="context-card amber">
-        <div class="brand-line"><span class="brand-name">The Ultimate Human</span></div>
-        <p class="context-text">Up 63% (&pound;3.4k &rarr; &pound;5.6k). No Slack context. Under investigation.</p>
-      </div>
-      <div class="context-card amber">
-        <div class="brand-line"><span class="brand-name">Inhale H2</span></div>
-        <p class="context-text">Sporadic high-ticket - returned to &pound;0 after &pound;2.8k last week. Normal order timing volatility.</p>
-      </div>
-      <div class="context-card amber">
-        <div class="brand-line"><span class="brand-name">CELLER8</span></div>
-        <p class="context-text">Sporadic high-ticket - returned to &pound;0 after &pound;2.7k last week. Normal order timing volatility.</p>
-      </div>
-      <div class="context-card amber">
-        <div class="brand-line"><span class="brand-name">Blueair</span></div>
-        <p class="context-text">Declined 63% (&pound;3.6k &rarr; &pound;1.3k). June retro ended 11 Jun (T2, Karina) - currently in a retro gap. Two July windows confirmed: 1-12 Jul + 15-31 Jul. Decline aligns with the gap between retro windows.</p>
-      </div>
-      <div class="context-card amber">
-        <div class="brand-line"><span class="brand-name">Somavedic</span></div>
-        <p class="context-text">Retro 15-27 Jun at 15% RRP / 11.54% invoice (outside top 100) just launched but NC dropped 77%. May take time to ramp - first week of promo. Monitor.</p>
+      <div class="context-card purple">
+        <div class="brand-line"><span class="brand-name">July retro gap</span></div>
+        <p class="context-text">
+          Only 7 brands confirmed for July retros (BON CHARGE, Hyperice, Therabody, Withings, Aarke, Blueair, Hunter &amp; Gather). 93 of the top 100 have no July retro confirmed. Steph, Conor, and Justin's sections have almost nothing confirmed for July. Priority chases: <strong>Fellow</strong> (T1, -53% this week), <strong>COROS</strong> (T1, strong demand but no retro), <strong>Blueprint</strong> (T1, growing organically), <strong>Form Nutrition</strong> (T1, gap), <strong>Designs for Health</strong> (T1, gap).
+        </p>
       </div>
     </div>
   </div>
 
-  <!-- KEY TAKEAWAYS -->
+  <!-- Key takeaways -->
   <div class="section">
     <div class="section-header">
-      <div class="icon blue">&#9733;</div>
-      <h2>Key Takeaways</h2>
+      <div class="icon blue">&#x1f4a1;</div>
+      <h2>Key takeaways</h2>
     </div>
-
     <div class="takeaways">
+
       <div class="takeaway">
         <div class="num">1</div>
-        <div class="text"><strong>Total NC up 8.1% WoW (&pound;514k &rarr; &pound;555k).</strong> Strong rebound after last week's -6.6% dip. 267 brands gained vs 222 declined - broad-based recovery rather than a few brands pulling the number up.</div>
+        <div class="text">
+          <strong>Flat week overall (-0.8%), but the composition shifted dramatically.</strong> Tech brands surged on Prime Day (WHOOP +&pound;13.6k, COROS +&pound;5.9k, Our Place +&pound;3.4k, Garmin +&pound;3.1k) while supplements and health brands pulled back as retro windows closed (Pure Encaps -&pound;4.1k, Biocare -&pound;2.2k, Bare Biology -&pound;1.3k). Net effect: tech gains offset supplement losses almost exactly.
+        </div>
       </div>
+
       <div class="takeaway">
         <div class="num">2</div>
-        <div class="text"><strong>Retro landscape: 40 of top 100 brands have June retros, 60 are gaps.</strong> 107 total retros running (66 outside top 100). By owner: Karina 14/24 (58%), Steph 16/36 (44%), Conor 1/3, Justin 0/8 excl. Momentous. July has only 7 confirmed so far.</div>
+        <div class="text">
+          <strong>Healf Zone is the biggest single mover (-&pound;9.9k, -41%).</strong> This is Healf's own product and the decline isn't explained by external factors. Needs investigation - was there a campaign end, ad spend pullback, or landing page change w/c 22?
+        </div>
       </div>
+
       <div class="takeaway">
         <div class="num">3</div>
-        <div class="text"><strong>Thorne and Pure Encapsulations bouncing back.</strong> Combined +&pound;8.2k after several weeks of trend flattening. Returns normalising, NC recovering. These two core supplement brands make up ~10% of total NC.</div>
+        <div class="text">
+          <strong>Oura Ring continues to slide (-27%, third consecutive decline).</strong> Ring 5 transition creating demand deferral. Healf holding RRP per brand partner instruction while comps discount Ring 4 up to 30%. The Prime Day retro (23-26 Jun) should provide a bounce in next week's data, but the structural Ring 4 &rarr; Ring 5 overhang remains.
+        </div>
       </div>
+
       <div class="takeaway">
         <div class="num">4</div>
-        <div class="text"><strong>Bare Biology 20% Healf-funded retro starts 19 Jun.</strong> Already showing pre-retro momentum (+62%). No-discount brand otherwise. Should drive strong NC uplift in w/c 22 Jun data.</div>
+        <div class="text">
+          <strong>Fellow collapsed (-53%) and is now the most urgent T1 retro gap.</strong> Went from a steady &pound;7.6k to &pound;3.6k with no clear external driver. Combined with the existing T1 gap status (Karina's section), this brand needs immediate attention. No retro, no pricing change, just demand falling away.
+        </div>
       </div>
+
       <div class="takeaway">
         <div class="num">5</div>
-        <div class="text"><strong>T1 retro gaps worth chasing: COROS (&pound;16.7k NC), Blueprint (&pound;6.5k NC), Fellow, Form Nutrition, Designs for Health.</strong> COROS and Blueprint both grew strongly this week without any promotional support. Fellow (Karina) and Form Nutrition (Steph) are also T1 gaps. These brands are performing on organic demand alone - retros would amplify significantly.</div>
+        <div class="text">
+          <strong>Nurosym is the retro success story of the week.</strong> The 10% co-funded retro (Conor) has driven a three-week uptrend from &pound;3.2k to &pound;7.9k (+148% over the retro window). One of the best retro-to-sales conversion rates this cycle. Window closes 24 Jun - expect pullback, but the signal is clear: co-funded retros on niche tech brands convert well.
+        </div>
       </div>
+
       <div class="takeaway">
         <div class="num">6</div>
-        <div class="text"><strong>Prime Day blackout explains 5 declining brands.</strong> WHOOP, Oura Ring, Our Place, Aarke, and Loop cannot discount before 23 Jun (disqualifies from Prime Day). All five declined this week but have retros confirmed 23-26 Jun. Aarke's extended window (23 Jun - 19 Jul) is the longest of any T1 brand.</div>
+        <div class="text">
+          <strong>COROS and Blueprint are growing strongly with no retro support.</strong> Both T1 gaps. COROS +35% to &pound;22.7k despite strict MAP enforcement. Blueprint +31% to &pound;8.6k (third consecutive week of growth). These brands have genuine organic momentum - securing retros for July would amplify what's already working.
+        </div>
       </div>
+
       <div class="takeaway">
         <div class="num">7</div>
-        <div class="text"><strong>Therabody retro underperforming due to comp undercutting, but July follow-up confirmed.</strong> NC declined 32% despite retro running 10-23 Jun. Comps undercutting even retro pricing. Second retro confirmed 1-10 Jul - need to assess whether comp pricing improves or the same issue persists.</div>
+        <div class="text">
+          <strong>Several brands are declining within active retro windows.</strong> Withings (-38% despite retro), Biocare (-35% despite 20% retro), Metagenics (-32% despite stacked retros), Therabody (-11% despite retro + comp matching). This pattern suggests either retro fatigue, comp undercutting eroding the retro's effectiveness, or the initial retro spike pulling demand forward.
+        </div>
       </div>
+
       <div class="takeaway">
         <div class="num">8</div>
-        <div class="text"><strong>Momentous has the deepest retro stacking of any brand.</strong> Three overlapping windows: sub-only (4-23 Jun), Creatine 90 Serve 25% (12-30 Jun), Creatine Chews 25% (15-21 Jun). NC recovered +25%. iHerb undercutting remains the structural headwind - retros are compensating but not solving the root issue.</div>
+        <div class="text">
+          <strong>Prime Day brands should bounce next week.</strong> WHOOP (+68%), Our Place (+114%), and Garmin (+247%) already showing uplift from the 23-26 Jun window. Aarke (-17%) and Oura Ring (-27%) were in pre-retro softening but their retros started 23 Jun. Expect net positive swing from tech brands in the w/c 29 Jun data.
+        </div>
       </div>
+
       <div class="takeaway">
         <div class="num">9</div>
-        <div class="text"><strong>Maurten is the biggest T2 gap with seasonal headwind.</strong> Down 40% with no retro (Steph), comps discounting, and summer dip hitting gels/drinks. One of the largest T2 brands without promotional support. Seasonal decline compounded by competitive pricing pressure.</div>
+        <div class="text">
+          <strong>SURI 25% Prime discount is a live opportunity.</strong> Karina secured the discount but it needs to go via codes/checkout, not Google Shopping. Brand Payments sheet confirmation still pending (Prarthna flagged). Once resolved, this is a strong CRM push candidate - email and SMS. Don't delay.
+        </div>
       </div>
+
       <div class="takeaway">
         <div class="num">10</div>
-        <div class="text"><strong>July retro pipeline is thin.</strong> Only 7 brands confirmed for July (BON CHARGE, Hyperice, Therabody, Withings, Aarke, Blueair, Hunter &amp; Gather). Steph, Conor, and Justin sections have almost nothing confirmed outside H&amp;G. Gap-filling needed before end of June.</div>
+        <div class="text">
+          <strong>July retro coverage is critically low.</strong> Only 7 brands confirmed vs 93 gaps in the top 100. Justin's section has 0 confirmed July retros. Priority chases: Fellow (T1, just collapsed), COROS (T1, strong organic demand), Blueprint (T1, growing), Form Nutrition (T1, gap), Designs for Health (T1, gap), LMNT (no retro, &pound;25k brand). The gap between June's 40/100 and July's 7/100 will hit NC hard if not closed.
+        </div>
       </div>
+
     </div>
   </div>
 
   <div class="footer">
-    <p>This report is automatically generated. Treat as a directional indicator - flag any discrepancies or additional context.</p>
-    <p style="margin-top: 0.25rem;">Healf Trading &middot; NC Brand Sales Deep Dive &middot; 22 June 2026</p>
+    Prepared by Siddhansh Arora, Head of Trading &bull; Data source: ThoughtSpot NC Net Sales export, filtered to new customers &bull; Retro data: HX dashboard, #promos, NC measurement sheet &bull; Brand notes: #discounting-issues, #growth-x-partner &bull; Generated 29 Jun 2026
   </div>
 
 </div>
