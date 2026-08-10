@@ -394,60 +394,62 @@
   <div class="header">
     <div class="header-top">
       <h1>NC Brand Sales Deep Dive</h1>
-      <span class="badge negative">&minus;5.0% LFL</span>
+      <span class="badge negative">&minus;2.9% WoW</span>
     </div>
     <p class="subtitle">
-      <strong>w/c 27 Jul vs 3 Aug 2026</strong> &mdash; New customer net sales by brand (UK e-com, excl. Healf Zone, HX, POS). <strong>Partial week: 3&ndash;8 Aug, 6 days.</strong> 213 brands up against 276 down, after 286 up last week. Metagenics has stabilised 33% above its pre-retro base. Thorne's fall is two discontinued SKUs, not demand. Omnilux and Balance Phone both building. Garmin quadrupled.
+      <strong>w/c 27 Jul vs 3 Aug 2026</strong> &mdash; New customer net sales by brand (UK e-com, excl. Healf Zone, HX, POS). Full week. Sales down 2.9% but <strong>new customer count down 7.6%</strong> &mdash; fewer customers spending more each. 220 brands up against 270 down. Tech strong: Oura, Garmin, WHOOP, Aarke, Balance Phone all up. Inhale H2 at zero. Metagenics holds its retro gain.
     </p>
   </div>
 
-  <!-- Partial week warning -->
-  <div class="note-box" style="border-left-color:var(--amber-600);background:var(--amber-50)">
-    <strong>Partial week &mdash; read the LFL column, not the raw.</strong> w/c 3 Aug covers 3&ndash;8 Aug (6 days) against a full 7 days prior. Raw totals show &minus;18.5%, but roughly 14pp of that is the missing day. <strong>Like-for-like the week is &minus;5.0%</strong>, and that is a real decline. The LFL % column in every table below is the one to read; the &Delta; &pound; column is raw and understated.
-  </div>
-
-  <!-- Filter note -->
-  <div class="note-box">
-    <strong>Data filters:</strong> New customers only &bull; UK market &bull; Excludes Healf Zone, HX channel, POS &bull; Sale transactions only &bull; ThoughtSpot extract 9 Aug 2026
+  <!-- Data source note -->
+  <div class="note-box" style="border-left-color:var(--blue-600);background:var(--blue-100)">
+    <strong>Now pulled directly from the warehouse.</strong> This week's figures come straight from <code>daily_kpis</code> via the data agent rather than a ThoughtSpot export, on the standard filter set: SALE transactions, UK market, excluding HX and POS channels, excluding customer draft orders, and excluding all Healf Zone products. Both sources reconcile to within 0.15%. It means no more partial weeks &mdash; <strong>this is a complete 7-day week (3&ndash;9 Aug)</strong>, and earlier estimates on this page that were based on 6 days have been replaced.
   </div>
 
   <!-- Stat cards -->
   <div class="stats">
     <div class="stat-card">
-      <div class="label">NC Net Sales (6 days)</div>
-      <div class="value">&pound;437k</div>
-      <div class="delta negative">&minus;5.0% like-for-like &middot; 7-day equiv &asymp; &pound;510k</div>
+      <div class="label">NC Net Sales</div>
+      <div class="value">&pound;520.7k</div>
+      <div class="delta negative">&pound;536.1k &rarr; &pound;520.7k (&minus;2.9%)</div>
     </div>
     <div class="stat-card">
-      <div class="label">Brands Up / Down</div>
-      <div class="value">213 <span style="color:var(--slate-300)">/</span> 276</div>
-      <div class="delta negative">Reversed from 286 / 213 last week</div>
+      <div class="label">New Customers</div>
+      <div class="value">7,623</div>
+      <div class="delta negative">8,250 &rarr; 7,623 (&minus;7.6%)</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Net Sales per NC</div>
+      <div class="value">&pound;68.31</div>
+      <div class="delta positive">&pound;64.98 &rarr; &pound;68.31 (+5.1%)</div>
     </div>
   </div>
 
   <!-- Trend -->
   <div class="section">
     <div class="section-header">
-      <div class="icon red">&#128201;</div>
-      <h2>The recovery has reversed</h2>
+      <div class="icon amber">&#128202;</div>
+      <h2>Volume is the problem, not basket</h2>
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Week</th><th>NC net sales</th><th>Days</th><th>Brands up / down</th><th>LFL &Delta;</th></tr></thead>
+        <thead><tr><th>Week</th><th>NC net sales</th><th>New customers</th><th>Sales per NC</th><th>&Delta; sales</th></tr></thead>
         <tbody>
-          <tr><td>w/c 29 Jun</td><td>&pound;530,697</td><td>7</td><td>&mdash;</td><td>&minus;0.9%</td></tr>
-          <tr><td>w/c 6 Jul</td><td>&pound;531,366</td><td>7</td><td>&mdash;</td><td>+0.1%</td></tr>
-          <tr class="row-red"><td>w/c 13 Jul</td><td>&pound;487,141</td><td>7</td><td>206 / 272</td><td class="val-neg">&minus;8.3%</td></tr>
-          <tr><td>w/c 20 Jul</td><td>&pound;504,616</td><td>7</td><td>249 / 241</td><td class="val-pos">+3.6%</td></tr>
-          <tr class="row-green"><td>w/c 27 Jul</td><td>&pound;536,567</td><td>7</td><td>286 / 213</td><td class="val-pos">+6.3%</td></tr>
-          <tr class="row-red"><td><strong>w/c 3 Aug</strong></td><td><strong>&pound;437,060</strong></td><td><strong>6</strong></td><td class="val-neg">213 / 276</td><td class="val-neg">&minus;5.0%</td></tr>
+          <tr><td>w/c 15 Jun</td><td>&pound;530,712</td><td>8,204</td><td>&pound;64.69</td><td>&mdash;</td></tr>
+          <tr><td>w/c 22 Jun</td><td>&pound;535,275</td><td>8,027</td><td>&pound;66.68</td><td class="val-pos">+0.9%</td></tr>
+          <tr><td>w/c 29 Jun</td><td>&pound;530,124</td><td>8,191</td><td>&pound;64.72</td><td class="val-neg">&minus;1.0%</td></tr>
+          <tr><td>w/c 6 Jul</td><td>&pound;530,559</td><td>8,008</td><td>&pound;66.25</td><td>+0.1%</td></tr>
+          <tr class="row-red"><td>w/c 13 Jul</td><td>&pound;486,695</td><td>7,253</td><td>&pound;67.10</td><td class="val-neg">&minus;8.3%</td></tr>
+          <tr><td>w/c 20 Jul</td><td>&pound;504,362</td><td>7,427</td><td>&pound;67.91</td><td class="val-pos">+3.6%</td></tr>
+          <tr class="row-green"><td>w/c 27 Jul</td><td>&pound;536,059</td><td>8,250</td><td>&pound;64.98</td><td class="val-pos">+6.3%</td></tr>
+          <tr class="row-red"><td><strong>w/c 3 Aug</strong></td><td><strong>&pound;520,718</strong></td><td class="val-neg"><strong>7,623</strong></td><td class="val-pos"><strong>&pound;68.31</strong></td><td class="val-neg">&minus;2.9%</td></tr>
         </tbody>
       </table>
     </div>
     <div class="context-list">
-      <div class="context-card red">
-        <div class="brand-line"><span class="brand-name">The breadth flipped in one week</span><span class="brand-delta neg">286 up &rarr; 213 up</span></div>
-        <div class="context-text">Last week had the widest positive spread in the window at 286 brands up against 213 down. This week is almost the exact mirror &mdash; 213 up, 276 down. That is a genuine broad-based softening rather than a few large brands moving, and it puts the run-rate back below the June average. The good news is the shape is familiar: this is the same pattern as w/c 13 Jul, which recovered fully within two weeks.</div>
+      <div class="context-card amber">
+        <div class="brand-line"><span class="brand-name">Fewer new customers, each spending more</span><span class="brand-delta neg">&minus;627 customers &middot; +&pound;3.33 each</span></div>
+        <div class="context-text">Sales fell 2.9% but the customer count fell <strong>7.6%</strong>, and net sales per new customer rose to <strong>&pound;68.31, the highest in the window</strong>. So basket is not the issue &mdash; acquisition volume is. That matters more than the sales line given the 45k NC quarterly target: we are converting fewer people at a better rate rather than losing spend.<br><br>The pattern across the window is consistent. Every week under 7,500 new customers &mdash; 13 Jul, 20 Jul and now 3 Aug &mdash; has a higher spend per head than the 8,000+ weeks. Volume weeks bring in lower-value customers, and quiet weeks skew to higher-intent buyers. Worth checking against CAC by week before drawing a conclusion, since a 7.6% volume drop at flat spend would be the cheaper explanation.</div>
       </div>
     </div>
   </div>
@@ -460,30 +462,28 @@
     </div>
     <div class="table-wrap">
       <table>
-        <thead>
-          <tr><th>#</th><th>Brand</th><th>w/c 13 Jul</th><th>w/c 20 Jul</th><th>w/c 27 Jul</th><th>w/c 3 Aug <span style="font-weight:400">(6d)</span></th><th>&Delta; &pound; raw</th><th>&Delta; % LFL</th><th>Comments</th></tr>
-        </thead>
+        <thead><tr><th>#</th><th>Brand</th><th>w/c 27 Jul</th><th>w/c 3 Aug</th><th>&Delta; &pound;</th><th>&Delta; %</th><th>Comments</th></tr></thead>
         <tbody>
-          <tr class="row-green"><td>1</td><td>WHOOP</td><td>&pound;29,285</td><td>&pound;25,266</td><td>&pound;33,509</td><td>&pound;32,186</td><td>&minus;&pound;1,322</td><td class="val-pos">+12.1%</td><td style="text-align:left">Still building &mdash; strongest run in the window</td></tr>
-          <tr class="row-green"><td>2</td><td>Oura Ring</td><td>&pound;28,881</td><td>&pound;22,204</td><td>&pound;26,626</td><td>&pound;26,874</td><td class="val-pos">+&pound;247</td><td class="val-pos">+17.7%</td><td style="text-align:left"><span class="tag retro">Retro</span> Aug retro delivering</td></tr>
-          <tr class="row-red"><td>3</td><td>Thorne</td><td>&pound;32,189</td><td>&pound;35,747</td><td>&pound;35,739</td><td>&pound;26,270</td><td class="val-neg">&minus;&pound;9,469</td><td class="val-neg">&minus;14.2%</td><td style="text-align:left">Largest single decline &mdash; first real drop in months</td></tr>
-          <tr><td>4</td><td>Pure Encapsulations</td><td>&pound;16,940</td><td>&pound;16,943</td><td>&pound;18,319</td><td>&pound;15,812</td><td class="val-neg">&minus;&pound;2,507</td><td>+0.7%</td><td style="text-align:left">Flat</td></tr>
-          <tr><td>5</td><td>LMNT</td><td>&pound;16,878</td><td>&pound;16,027</td><td>&pound;17,698</td><td>&pound;15,355</td><td class="val-neg">&minus;&pound;2,343</td><td>+1.2%</td><td style="text-align:left">Flat &mdash; stabilised</td></tr>
-          <tr class="row-red"><td>6</td><td>COROS</td><td>&pound;19,199</td><td>&pound;17,385</td><td>&pound;17,627</td><td>&pound;13,370</td><td class="val-neg">&minus;&pound;4,257</td><td class="val-neg">&minus;11.5%</td><td style="text-align:left"><span class="tag no-disc">MAP</span> falling again after one flat week</td></tr>
-          <tr class="row-green"><td>7</td><td>Aarke</td><td>&pound;8,281</td><td>&pound;9,655</td><td>&pound;10,096</td><td>&pound;9,969</td><td>&minus;&pound;127</td><td class="val-pos">+15.2%</td><td style="text-align:left"><span class="tag no-disc">MAP</span> third week up</td></tr>
-          <tr class="row-green"><td>8</td><td>Transparent Labs</td><td>&pound;8,573</td><td>&pound;9,974</td><td>&pound;9,245</td><td>&pound;9,402</td><td class="val-pos">+&pound;156</td><td class="val-pos">+18.6%</td><td style="text-align:left">Best week in the window</td></tr>
-          <tr class="row-red"><td>9</td><td>Momentous</td><td>&pound;8,691</td><td>&pound;12,069</td><td>&pound;13,059</td><td>&pound;8,729</td><td class="val-neg">&minus;&pound;4,330</td><td class="val-neg">&minus;22.0%</td><td style="text-align:left">Gives back the stock recovery</td></tr>
-          <tr class="row-green"><td>10</td><td>nama</td><td>&pound;6,165</td><td>&pound;7,794</td><td>&pound;5,803</td><td>&pound;8,212</td><td class="val-pos">+&pound;2,409</td><td class="val-pos">+65.1%</td><td style="text-align:left">Biggest turnaround &mdash; best week in the window</td></tr>
-          <tr><td>11</td><td>Nordic Naturals</td><td>&pound;9,580</td><td>&pound;9,657</td><td>&pound;9,899</td><td>&pound;8,007</td><td class="val-neg">&minus;&pound;1,892</td><td class="val-neg">&minus;5.6%</td><td style="text-align:left"></td></tr>
-          <tr class="row-green"><td>12</td><td>Balance Phone</td><td>&pound;2,218</td><td>&pound;3,632</td><td>&pound;7,212</td><td>&pound;7,304</td><td class="val-pos">+&pound;93</td><td class="val-pos">+18.2%</td><td style="text-align:left">Holding the restock gain</td></tr>
-          <tr class="row-green"><td>13</td><td>Hyperice</td><td>&pound;8,265</td><td>&pound;6,480</td><td>&pound;5,862</td><td>&pound;6,725</td><td class="val-pos">+&pound;862</td><td class="val-pos">+33.8%</td><td style="text-align:left">Post-retro decline over</td></tr>
-          <tr class="row-red"><td>14</td><td>Form Nutrition</td><td>&pound;6,755</td><td>&pound;7,003</td><td>&pound;9,184</td><td>&pound;6,061</td><td class="val-neg">&minus;&pound;3,123</td><td class="val-neg">&minus;23.0%</td><td style="text-align:left">Gives back last week's gain</td></tr>
-          <tr class="row-green"><td>15</td><td>Garmin</td><td>&pound;2,413</td><td>&pound;3,407</td><td>&pound;1,891</td><td>&pound;6,026</td><td class="val-pos">+&pound;4,135</td><td class="val-pos">+271.8%</td><td style="text-align:left">Biggest gainer &mdash; driver unconfirmed</td></tr>
-          <tr><td>16</td><td>MaryRuth's</td><td>&pound;4,849</td><td>&pound;6,232</td><td>&pound;7,179</td><td>&pound;6,008</td><td class="val-neg">&minus;&pound;1,171</td><td>&minus;2.4%</td><td style="text-align:left">Flat</td></tr>
-          <tr class="row-red"><td>17</td><td>Kiki Health</td><td>&pound;5,709</td><td>&pound;7,092</td><td>&pound;7,990</td><td>&pound;5,209</td><td class="val-neg">&minus;&pound;2,782</td><td class="val-neg">&minus;23.9%</td><td style="text-align:left">Reverses two weeks of gains</td></tr>
-          <tr><td>18</td><td>H2Tab</td><td>&pound;5,887</td><td>&pound;7,604</td><td>&pound;5,887</td><td>&pound;5,192</td><td class="val-neg">&minus;&pound;696</td><td>+2.9%</td><td style="text-align:left">Stabilised, comp still discounting</td></tr>
-          <tr class="row-green"><td>19</td><td>Withings</td><td>&pound;4,885</td><td>&pound;7,421</td><td>&pound;5,419</td><td>&pound;5,065</td><td>&minus;&pound;353</td><td class="val-pos">+9.1%</td><td style="text-align:left">Holding above its old plateau</td></tr>
-          <tr class="row-red"><td>20</td><td>SURI</td><td>&pound;13,480</td><td>&pound;5,725</td><td>&pound;8,328</td><td>&pound;5,011</td><td class="val-neg">&minus;&pound;3,317</td><td class="val-neg">&minus;29.8%</td><td style="text-align:left">Down again &mdash; check price position</td></tr>
+          <tr class="row-green"><td>1</td><td>WHOOP</td><td>&pound;33,509</td><td>&pound;37,336</td><td class="val-pos">+&pound;3,827</td><td class="val-pos">+11.4%</td><td style="text-align:left">Third week up &mdash; best in the window</td></tr>
+          <tr class="row-green"><td>2</td><td>Oura Ring</td><td>&pound;26,626</td><td>&pound;32,373</td><td class="val-pos">+&pound;5,746</td><td class="val-pos">+21.6%</td><td style="text-align:left"><span class="tag retro">Retro</span> Aug retro is the biggest single gain</td></tr>
+          <tr class="row-red"><td>3</td><td>Thorne</td><td>&pound;35,739</td><td>&pound;30,926</td><td class="val-neg">&minus;&pound;4,813</td><td class="val-neg">&minus;13.5%</td><td style="text-align:left">Half explained by discontinued SKUs</td></tr>
+          <tr><td>4</td><td>Pure Encapsulations</td><td>&pound;18,319</td><td>&pound;18,537</td><td class="val-pos">+&pound;218</td><td>+1.2%</td><td style="text-align:left">Best week in the window</td></tr>
+          <tr><td>5</td><td>COROS</td><td>&pound;17,627</td><td>&pound;17,817</td><td class="val-pos">+&pound;189</td><td>+1.1%</td><td style="text-align:left"><span class="tag no-disc">MAP</span> stabilised &mdash; two flat weeks</td></tr>
+          <tr><td>6</td><td>LMNT</td><td>&pound;17,698</td><td>&pound;17,396</td><td class="val-neg">&minus;&pound;302</td><td>&minus;1.7%</td><td style="text-align:left">Flat</td></tr>
+          <tr class="row-green"><td>7</td><td>Aarke</td><td>&pound;10,096</td><td>&pound;12,841</td><td class="val-pos">+&pound;2,744</td><td class="val-pos">+27.2%</td><td style="text-align:left"><span class="tag no-disc">MAP</span> fourth week up &mdash; best in window</td></tr>
+          <tr class="row-red"><td>8</td><td>Momentous</td><td>&pound;13,059</td><td>&pound;10,639</td><td class="val-neg">&minus;&pound;2,420</td><td class="val-neg">&minus;18.5%</td><td style="text-align:left">Gives back part of the stock recovery</td></tr>
+          <tr class="row-green"><td>9</td><td>Transparent Labs</td><td>&pound;9,245</td><td>&pound;10,366</td><td class="val-pos">+&pound;1,121</td><td class="val-pos">+12.1%</td><td style="text-align:left">Best week in the window</td></tr>
+          <tr class="row-green"><td>10</td><td>Balance Phone</td><td>&pound;7,212</td><td>&pound;9,638</td><td class="val-pos">+&pound;2,426</td><td class="val-pos">+33.6%</td><td style="text-align:left">Back in stock &mdash; still building</td></tr>
+          <tr><td>11</td><td>Nordic Naturals</td><td>&pound;9,899</td><td>&pound;9,223</td><td class="val-neg">&minus;&pound;676</td><td class="val-neg">&minus;6.8%</td><td style="text-align:left"></td></tr>
+          <tr class="row-green"><td>12</td><td>nama</td><td>&pound;5,803</td><td>&pound;9,103</td><td class="val-pos">+&pound;3,300</td><td class="val-pos">+56.9%</td><td style="text-align:left">Best week in the window &mdash; big turnaround</td></tr>
+          <tr class="row-green"><td>13</td><td>Hyperice</td><td>&pound;5,862</td><td>&pound;8,556</td><td class="val-pos">+&pound;2,694</td><td class="val-pos">+46.0%</td><td style="text-align:left">Post-retro decline fully reversed</td></tr>
+          <tr class="row-red"><td>14</td><td>Form Nutrition</td><td>&pound;9,184</td><td>&pound;7,077</td><td class="val-neg">&minus;&pound;2,107</td><td class="val-neg">&minus;22.9%</td><td style="text-align:left">Gives back last week's high</td></tr>
+          <tr class="row-green"><td>15</td><td>Garmin</td><td>&pound;1,891</td><td>&pound;6,976</td><td class="val-pos">+&pound;5,085</td><td class="val-pos">+269.0%</td><td style="text-align:left">Second largest gain &mdash; driver unconfirmed</td></tr>
+          <tr><td>16</td><td>MaryRuth's</td><td>&pound;7,179</td><td>&pound;6,949</td><td class="val-neg">&minus;&pound;230</td><td>&minus;3.2%</td><td style="text-align:left">Flat</td></tr>
+          <tr class="row-green"><td>17</td><td>H2Tab</td><td>&pound;5,887</td><td>&pound;6,509</td><td class="val-pos">+&pound;622</td><td class="val-pos">+10.6%</td><td style="text-align:left">Recovered despite comp still discounting</td></tr>
+          <tr class="row-green"><td>18</td><td>Withings</td><td>&pound;5,419</td><td>&pound;6,427</td><td class="val-pos">+&pound;1,009</td><td class="val-pos">+18.6%</td><td style="text-align:left">Above its old plateau</td></tr>
+          <tr class="row-red"><td>19</td><td>Kiki Health</td><td>&pound;7,990</td><td>&pound;6,281</td><td class="val-neg">&minus;&pound;1,709</td><td class="val-neg">&minus;21.4%</td><td style="text-align:left">Reverses two weeks of gains</td></tr>
+          <tr class="row-red"><td>20</td><td>SURI</td><td>&pound;8,328</td><td>&pound;6,227</td><td class="val-neg">&minus;&pound;2,101</td><td class="val-neg">&minus;25.2%</td><td style="text-align:left">Down again &mdash; check price position</td></tr>
         </tbody>
       </table>
     </div>
@@ -497,18 +497,17 @@
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Metagenics</th><th>w/c 13 Jul</th><th>w/c 20 Jul <span style="font-weight:400">(pre)</span></th><th>w/c 27 Jul <span style="font-weight:400">(retro)</span></th><th>w/c 3 Aug <span style="font-weight:400">(post, 6d)</span></th></tr></thead>
+        <thead><tr><th>Metagenics</th><th>w/c 13 Jul</th><th>w/c 20 Jul <span style="font-weight:400">(pre)</span></th><th>w/c 27 Jul <span style="font-weight:400">(retro)</span></th><th>w/c 3 Aug <span style="font-weight:400">(post)</span></th></tr></thead>
         <tbody>
-          <tr><td>Net sales</td><td>&pound;1,941</td><td>&pound;2,078</td><td>&pound;5,328</td><td>&pound;2,366</td></tr>
-          <tr class="row-green"><td>Per day (LFL)</td><td>&pound;277</td><td>&pound;297</td><td>&pound;761</td><td><strong>&pound;394</strong></td></tr>
-          <tr class="row-green"><td>vs pre-retro base</td><td>&mdash;</td><td>&mdash;</td><td class="val-pos">+156%</td><td class="val-pos"><strong>+32.8%</strong></td></tr>
+          <tr><td>NC net sales</td><td>&pound;1,941</td><td>&pound;2,078</td><td>&pound;5,328</td><td><strong>&pound;2,740</strong></td></tr>
+          <tr class="row-green"><td>vs pre-retro base</td><td>&mdash;</td><td>&mdash;</td><td class="val-pos">+156%</td><td class="val-pos"><strong>+31.9%</strong></td></tr>
         </tbody>
       </table>
     </div>
     <div class="context-list">
       <div class="context-card green">
-        <div class="brand-line"><span class="brand-name">Stabilised above where it started</span><span class="brand-delta pos">+32.8% vs pre-retro</span></div>
-        <div class="context-text"><strong>The headline &minus;48% is measured against the retro peak, which is the wrong baseline.</strong> The question is not whether Metagenics fell from its retro week &mdash; every retro does &mdash; but where it settled. It settled at &pound;394/day against a pre-retro base of &pound;297/day, so it is <strong>33% above where it started</strong> and on a 7-day equivalent is running &pound;2,760 against &pound;2,078 before. The retro pulled the brand up to a new level and it has held there.<br><br>That makes Metagenics the counter-example the calendar needed. BON CHARGE ran a retro and settled at &pound;271/day against a &pound;785/day pre-retro base &mdash; it gave back the volume and then some. Metagenics did not. <strong>The lesson is that a retro can create a durable step up, and the test is post-retro versus pre-retro, never post-retro versus peak.</strong> Worth understanding what Metagenics did differently and applying it to the rest of the calendar.</div>
+        <div class="brand-line"><span class="brand-name">Settled a third above where it started</span><span class="brand-delta pos">+31.9% vs pre-retro</span></div>
+        <div class="context-text">The headline &minus;48.6% is measured against the retro peak, which is the wrong baseline &mdash; every retro falls from its peak. The question is where it <em>settles</em>, and Metagenics settled at <strong>&pound;2,740 against a pre-retro base of &pound;2,078</strong>. Now confirmed on a complete week rather than an extrapolation.<br><br>That makes it the counter-example the calendar needed. <strong>BON CHARGE is the contrast</strong>: pre-retro &pound;5,497, and now &pound;1,959 two weeks after support ended &mdash; it gave back the volume and more, helped by a comp discounting into the gap. Same mechanic, opposite outcome. <strong>The test is post-retro versus pre-retro, never post-retro versus peak.</strong> Worth understanding what Metagenics did differently and applying it across the calendar.</div>
       </div>
     </div>
   </div>
@@ -517,7 +516,7 @@
   <div class="section">
     <div class="section-header">
       <div class="icon amber">&#128465;</div>
-      <h2>Discontinued SKUs &mdash; a root cause behind several declines</h2>
+      <h2>Discontinued SKUs &mdash; &pound;6.3k of NC a week</h2>
     </div>
     <div class="table-wrap">
       <table>
@@ -525,34 +524,30 @@
         <tbody>
           <tr class="row-red"><td>Seed &mdash; DS-01&reg; Daily Synbiotic</td><td>28 Jul</td><td>&pound;1,859</td><td>&pound;0</td><td class="val-neg">&minus;&pound;1,859</td></tr>
           <tr class="row-red"><td>Thorne &mdash; Magnesium Glycinate 90 caps</td><td>28 Jul</td><td>&pound;1,795</td><td>&pound;0</td><td class="val-neg">&minus;&pound;1,795</td></tr>
-          <tr class="row-red"><td>Organic Protein Company &mdash; range</td><td>Jul</td><td>&pound;1,982</td><td>&pound;849</td><td class="val-neg">&minus;&pound;1,133</td></tr>
-          <tr class="row-red"><td>Truvani &mdash; range</td><td>Jul</td><td>&pound;1,050</td><td>&pound;17</td><td class="val-neg">&minus;&pound;1,033</td></tr>
+          <tr class="row-red"><td>Organic Protein Company &mdash; range</td><td>Jul</td><td>&pound;1,982</td><td>&pound;776</td><td class="val-neg">&minus;&pound;1,206</td></tr>
+          <tr class="row-red"><td>Truvani &mdash; range</td><td>Jul</td><td>&pound;1,050</td><td>&pound;14</td><td class="val-neg">&minus;&pound;1,036</td></tr>
           <tr class="row-red"><td>Thorne &mdash; Whey Protein Isolate Chocolate</td><td>28 Jul</td><td>&pound;446</td><td>&pound;0</td><td class="val-neg">&minus;&pound;446</td></tr>
-          <tr><td>Vital Proteins &mdash; range</td><td>Jul</td><td>&pound;554</td><td>&pound;398</td><td>no clear impact</td></tr>
-          <tr class="row-red"><td><strong>Total</strong></td><td></td><td><strong>&pound;7,132</strong></td><td><strong>&pound;866</strong></td><td class="val-neg"><strong>&minus;&pound;6,267/wk</strong></td></tr>
+          <tr><td>Vital Proteins &mdash; range</td><td>Jul</td><td>&pound;554</td><td>&pound;375</td><td>no clear impact</td></tr>
+          <tr class="row-red"><td><strong>Total</strong></td><td></td><td><strong>&pound;7,132</strong></td><td><strong>&pound;790</strong></td><td class="val-neg"><strong>&minus;&pound;6,342/wk</strong></td></tr>
         </tbody>
       </table>
     </div>
     <div class="context-list">
       <div class="context-card amber">
-        <div class="brand-line"><span class="brand-name">&pound;6.3k of NC a week, gone</span><span class="brand-delta neg">&asymp; &pound;326k annualised</span></div>
-        <div class="context-text">Figures above are <strong>NC-only, UK e-com, on the same basis as the rest of this report</strong> &mdash; queried at SKU level rather than taken from the catalogue extract. That matters: the discontinued-SKU file shows Seed DS-01 at &pound;7,177/week, but on an NC UK e-com basis it was &pound;1,859. The file is a wider scope, so its rankings are useful for spotting candidates but its &pound; values overstate NC by roughly 4x. Everything in this section is measured directly.<br><br>Five SKU groups account for <strong>&pound;6,267 of NC a week</strong>, around &pound;326k annualised. Four are now at or near zero. Vital Proteins is the only one on the list with no clear NC impact, which fits &mdash; it had already declined from &pound;899 to &pound;554 before the cut, so those SKUs were low-velocity on NC.</div>
+        <div class="brand-line"><span class="brand-name">&pound;6.3k of NC a week, gone</span><span class="brand-delta neg">&asymp; &pound;330k annualised</span></div>
+        <div class="context-text">All figures measured at SKU level on the same NC UK e-com basis as the rest of this report. Worth noting the catalogue extract shows Seed DS-01 at &pound;7,177/week against &pound;1,859 measured here &mdash; it is a wider scope, so use it to spot candidates but not to size NC impact.<br><br>Five SKU groups account for <strong>&pound;6,342 of NC a week</strong>, roughly &pound;330k annualised. Vital Proteins is the only one with no clear NC impact, which fits &mdash; it had already declined before the cut, so those SKUs were low-velocity on NC. A large trailing sales figure does not mean a large NC loss.</div>
+      </div>
+      <div class="context-card red">
+        <div class="brand-line"><span class="brand-name">Seed &mdash; a whole brand switched off</span><span class="brand-delta neg">&pound;1,859/wk &rarr; &pound;0</span></div>
+        <div class="context-text"><strong>The steadiest brand in the book, switched off by one SKU.</strong> DS-01 Daily Synbiotic ran &pound;1,507&ndash;2,099 of NC every single week from June through 20 July with almost no variance &mdash; an <strong>&pound;1,859/week average</strong>. Discontinued 28 July, &pound;370 that week on residual stock, and <strong>&pound;0 since</strong>. DS-01 was effectively the entire brand.<br><br>That is roughly <strong>&pound;97k annualised</strong> from a single SKU decision. The tag is short-expiry rather than commercial, which matters &mdash; short expiry is a stock condition, not a decision to delist. <strong>Three conflicting accounts exist</strong>: compliance, short expiry, and an internal error since resolved. The brand is still at zero. Settle this first; it is the cleanest recovery available.</div>
       </div>
       <div class="context-card amber">
-        <div class="brand-line"><span class="brand-name">Thorne &mdash; partly explained, not fully</span><span class="brand-delta neg">&minus;14.2% LFL</span></div>
-        <div class="context-text">Magnesium Glycinate and Whey Protein Isolate Chocolate went on 28 July carrying <strong>&pound;2,241/week of NC between them</strong>, and both are now at zero. Residual stock carried them through w/c 27 Jul at &pound;564, which is why that week looked flat.<br><br><strong>But they do not explain the whole fall.</strong> Against w/c 20 Jul, the last clean week, Thorne is down &pound;5,099 on a 7-day equivalent and the two SKUs account for &pound;2,354 &mdash; <strong>46%</strong>. Measured week-on-week against 27 Jul they explain only 11%, because most of their contribution had already gone. So roughly half of Thorne's decline is the discontinuations and half is still unexplained. Worth a look at the rest of the range before assuming it is all catalogue.</div>
+        <div class="brand-line"><span class="brand-name">Organic Protein Company &mdash; starting to come back</span><span class="brand-delta pos">&pound;112 &rarr; &pound;776</span></div>
+        <div class="context-text">OPC was accelerating when it was cut &mdash; NC ran &pound;1,405 &rarr; &pound;2,017 &rarr; &pound;2,683 &rarr; &pound;2,710 &rarr; &pound;2,142 &rarr; &pound;2,307 through June and July, <strong>averaging &pound;2,461/week over its last four clean weeks</strong>. It collapsed to &pound;112 and has now recovered to &pound;776, so something is back on sale. Still &pound;1,206/week below its 8-week average and &pound;1,685 below its recent run-rate.<br><br>Durable growth is rare &mdash; Omnilux and Balance Phone are the only two we have identified &mdash; so a brand cut mid-ramp is worth revisiting. The partial recovery suggests it is retrievable.</div>
       </div>
-      <div class="context-card red">
-        <div class="brand-line"><span class="brand-name">Seed &mdash; a whole brand switched off</span><span class="brand-delta neg">&pound;2,092 &rarr; &pound;370 &rarr; &pound;0</span></div>
-        <div class="context-text"><strong>The steadiest brand in the book, switched off by one SKU.</strong> DS-01 Daily Synbiotic ran &pound;1,507&ndash;2,099 of NC every single week from June through 20 July with almost no variance &mdash; an <strong>&pound;1,859/week average</strong>. It was discontinued on 28 July, fell to &pound;370 that week on residual stock, and has been at <strong>&pound;0</strong> since. DS-01 was effectively the entire brand.<br><br>That is <strong>&pound;1,859 of NC a week, roughly &pound;97k annualised</strong>, from a single SKU decision. The tag is short-expiry rather than commercial, which matters &mdash; short expiry is a stock condition, not a decision to delist. <strong>There are three conflicting accounts</strong>: compliance, short expiry, and an internal error since resolved. The brand is still at zero. Worth settling first, because if it was an error or a temporary expiry issue it is the cleanest recovery on the list.</div>
-      </div>
-      <div class="context-card red">
-        <div class="brand-line"><span class="brand-name">Organic Protein Company &mdash; cut while it was compounding</span><span class="brand-delta neg">&pound;2,307 &rarr; &pound;112 &rarr; &pound;728</span></div>
-        <div class="context-text"><strong>This is the one that stings.</strong> OPC was not a flat brand being tidied up &mdash; it was accelerating. NC went &pound;1,496 &rarr; &pound;1,097 &rarr; &pound;1,405 &rarr; &pound;2,017 &rarr; &pound;2,683 &rarr; &pound;2,710 &rarr; &pound;2,142 &rarr; &pound;2,307 through June and July, <strong>averaging &pound;2,461/week over its last four clean weeks</strong> against &pound;1,982 across the full eight. SKUs across the range were then discontinued and NC collapsed to &pound;112, recovering only to &pound;849 on a 7-day equivalent.<br><br>That is <strong>&pound;1,133/week lost against the 8-week average, or &pound;1,612 against the recent run-rate</strong>. Durable growth is rare &mdash; Omnilux and Balance Phone are the only two we have identified &mdash; so losing one mid-ramp is worth understanding. If the call was commercial rather than supply-driven, the trajectory alone justifies revisiting it.</div>
-      </div>
-      <div class="context-card">
-        <div class="brand-line"><span class="brand-name">Truvani and Vital Proteins</span></div>
-        <div class="context-text"><strong>Truvani took the hit as expected.</strong> It ran &pound;1,348/week on average from 1 June to 6 July, then dropped to &pound;136 the week of 13 July and has declined every week since to &pound;14. That is <strong>&pound;1,033/week of NC gone</strong> and the earliest of these discontinuations to bite. <strong>Vital Proteins shows no clear NC impact</strong>, moving &pound;542 &rarr; &pound;1,034 &rarr; &pound;341 &mdash; noise at that volume. It had already fallen from &pound;899 to &pound;554 before the cut, so its discontinued SKUs were low-velocity on NC. That distinction is worth keeping: a large trailing sales figure in the catalogue file does not mean a large NC loss.</div>
+      <div class="context-card amber">
+        <div class="brand-line"><span class="brand-name">Thorne &mdash; about half explained</span><span class="brand-delta neg">&minus;&pound;4,813 (&minus;13.5%)</span></div>
+        <div class="context-text">Magnesium Glycinate and Whey Protein Isolate Chocolate went on 28 July carrying <strong>&pound;2,241/week of NC between them</strong>, both now at zero. Against w/c 20 Jul, the last clean week, Thorne is down &pound;4,821 and those two SKUs account for &pound;2,354 &mdash; <strong>49%</strong>. So roughly half the decline is catalogue and half is not yet explained. Worth a look across the rest of the range before assuming it is all discontinuations.</div>
       </div>
     </div>
   </div>
@@ -561,51 +556,51 @@
   <div class="section">
     <div class="section-header">
       <div class="icon green">&#8593;</div>
-      <h2>Gainers &mdash; w/c 27 Jul &rarr; 3 Aug (like-for-like)</h2>
+      <h2>Gainers &mdash; w/c 27 Jul &rarr; 3 Aug</h2>
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Brand</th><th>w/c 20 Jul</th><th>w/c 27 Jul</th><th>w/c 3 Aug <span style="font-weight:400">(6d)</span></th><th>&Delta; % LFL</th></tr></thead>
+        <thead><tr><th>Brand</th><th>w/c 27 Jul</th><th>w/c 3 Aug</th><th>&Delta; &pound;</th><th>&Delta; %</th></tr></thead>
         <tbody>
-          <tr class="row-green"><td>Garmin</td><td>&pound;3,407</td><td>&pound;1,891</td><td>&pound;6,026</td><td class="val-pos">+271.8%</td></tr>
-          <tr class="row-green"><td>NuFACE</td><td>&pound;1,038</td><td>&pound;570</td><td>&pound;1,748</td><td class="val-pos">+257.6%</td></tr>
-          <tr class="row-green"><td>Muse</td><td>&pound;910</td><td>&pound;189</td><td>&pound;910</td><td class="val-pos">+461.5%</td></tr>
-          <tr class="row-green"><td>BodyBio</td><td>&pound;1,180</td><td>&pound;854</td><td>&pound;1,519</td><td class="val-pos">+107.7%</td></tr>
-          <tr class="row-green"><td>Pulsetto</td><td>&pound;2,145</td><td>&pound;1,582</td><td>&pound;2,593</td><td class="val-pos">+91.2%</td></tr>
-          <tr class="row-green"><td>QuietOn</td><td>&pound;1,020</td><td>&pound;1,216</td><td>&pound;1,875</td><td class="val-pos">+79.9%</td></tr>
-          <tr class="row-green"><td>Lola Blankets</td><td>&pound;1,028</td><td>&pound;987</td><td>&pound;1,488</td><td class="val-pos">+75.9%</td></tr>
-          <tr class="row-green"><td>nama</td><td>&pound;7,794</td><td>&pound;5,803</td><td>&pound;8,212</td><td class="val-pos">+65.1%</td></tr>
-          <tr class="row-green"><td>Hooga Health</td><td>&pound;1,971</td><td>&pound;1,675</td><td>&pound;2,100</td><td class="val-pos">+46.3%</td></tr>
-          <tr class="row-green"><td>Omnilux</td><td>&pound;3,364</td><td>&pound;4,004</td><td>&pound;4,888</td><td class="val-pos">+42.4%</td></tr>
-          <tr class="row-green"><td>IM8</td><td>&pound;3,446</td><td>&pound;2,617</td><td>&pound;3,053</td><td class="val-pos">+36.1%</td></tr>
-          <tr class="row-green"><td>Hyperice</td><td>&pound;6,480</td><td>&pound;5,862</td><td>&pound;6,725</td><td class="val-pos">+33.8%</td></tr>
-          <tr class="row-green"><td>Humantra</td><td>&pound;3,305</td><td>&pound;2,208</td><td>&pound;2,526</td><td class="val-pos">+33.5%</td></tr>
-          <tr class="row-green"><td>Lumie</td><td>&pound;2,231</td><td>&pound;2,706</td><td>&pound;3,075</td><td class="val-pos">+32.6%</td></tr>
-          <tr class="row-green"><td>Blueprint</td><td>&pound;3,351</td><td>&pound;2,775</td><td>&pound;3,106</td><td class="val-pos">+30.6%</td></tr>
-          <tr class="row-green"><td>Codeage</td><td>&pound;5,228</td><td>&pound;4,114</td><td>&pound;4,545</td><td class="val-pos">+28.9%</td></tr>
-          <tr class="row-green"><td>Transparent Labs</td><td>&pound;9,974</td><td>&pound;9,245</td><td>&pound;9,402</td><td class="val-pos">+18.6%</td></tr>
-          <tr class="row-green"><td>Oura Ring</td><td>&pound;22,204</td><td>&pound;26,626</td><td>&pound;26,874</td><td class="val-pos">+17.7%</td></tr>
-          <tr class="row-green"><td>Aarke</td><td>&pound;9,655</td><td>&pound;10,096</td><td>&pound;9,969</td><td class="val-pos">+15.2%</td></tr>
-          <tr class="row-green"><td>WHOOP</td><td>&pound;25,266</td><td>&pound;33,509</td><td>&pound;32,186</td><td class="val-pos">+12.1%</td></tr>
+          <tr class="row-green"><td>Oura Ring</td><td>&pound;26,626</td><td>&pound;32,373</td><td class="val-pos">+&pound;5,746</td><td class="val-pos">+21.6%</td></tr>
+          <tr class="row-green"><td>Garmin</td><td>&pound;1,891</td><td>&pound;6,976</td><td class="val-pos">+&pound;5,085</td><td class="val-pos">+269.0%</td></tr>
+          <tr class="row-green"><td>WHOOP</td><td>&pound;33,509</td><td>&pound;37,336</td><td class="val-pos">+&pound;3,827</td><td class="val-pos">+11.4%</td></tr>
+          <tr class="row-green"><td>nama</td><td>&pound;5,803</td><td>&pound;9,103</td><td class="val-pos">+&pound;3,300</td><td class="val-pos">+56.9%</td></tr>
+          <tr class="row-green"><td>Aarke</td><td>&pound;10,096</td><td>&pound;12,841</td><td class="val-pos">+&pound;2,744</td><td class="val-pos">+27.2%</td></tr>
+          <tr class="row-green"><td>Hyperice</td><td>&pound;5,862</td><td>&pound;8,556</td><td class="val-pos">+&pound;2,694</td><td class="val-pos">+46.0%</td></tr>
+          <tr class="row-green"><td>Balance Phone</td><td>&pound;7,212</td><td>&pound;9,638</td><td class="val-pos">+&pound;2,426</td><td class="val-pos">+33.6%</td></tr>
+          <tr class="row-green"><td>Blueprint</td><td>&pound;2,775</td><td>&pound;4,264</td><td class="val-pos">+&pound;1,489</td><td class="val-pos">+53.7%</td></tr>
+          <tr class="row-green"><td>NuFACE</td><td>&pound;570</td><td>&pound;1,748</td><td class="val-pos">+&pound;1,178</td><td class="val-pos">+206.5%</td></tr>
+          <tr class="row-green"><td>Codeage</td><td>&pound;4,114</td><td>&pound;5,282</td><td class="val-pos">+&pound;1,168</td><td class="val-pos">+28.4%</td></tr>
+          <tr class="row-green"><td>Designs for Health</td><td>&pound;3,848</td><td>&pound;5,008</td><td class="val-pos">+&pound;1,160</td><td class="val-pos">+30.1%</td></tr>
+          <tr class="row-green"><td>Pulsetto</td><td>&pound;1,582</td><td>&pound;2,719</td><td class="val-pos">+&pound;1,137</td><td class="val-pos">+71.8%</td></tr>
+          <tr class="row-green"><td>Omnilux</td><td>&pound;4,004</td><td>&pound;5,134</td><td class="val-pos">+&pound;1,131</td><td class="val-pos">+28.3%</td></tr>
+          <tr class="row-green"><td>Transparent Labs</td><td>&pound;9,245</td><td>&pound;10,366</td><td class="val-pos">+&pound;1,121</td><td class="val-pos">+12.1%</td></tr>
+          <tr class="row-green"><td>QuietOn</td><td>&pound;1,216</td><td>&pound;2,246</td><td class="val-pos">+&pound;1,030</td><td class="val-pos">+84.7%</td></tr>
+          <tr class="row-green"><td>Withings</td><td>&pound;5,419</td><td>&pound;6,427</td><td class="val-pos">+&pound;1,009</td><td class="val-pos">+18.6%</td></tr>
+          <tr class="row-green"><td>Hooga Health</td><td>&pound;1,675</td><td>&pound;2,665</td><td class="val-pos">+&pound;991</td><td class="val-pos">+59.2%</td></tr>
+          <tr class="row-green"><td>Muse</td><td>&pound;189</td><td>&pound;1,110</td><td class="val-pos">+&pound;921</td><td class="val-pos">+487.0%</td></tr>
+          <tr class="row-green"><td>BodyBio</td><td>&pound;854</td><td>&pound;1,735</td><td class="val-pos">+&pound;881</td><td class="val-pos">+103.2%</td></tr>
+          <tr class="row-green"><td>Humantra</td><td>&pound;2,208</td><td>&pound;3,062</td><td class="val-pos">+&pound;854</td><td class="val-pos">+38.7%</td></tr>
         </tbody>
       </table>
     </div>
     <div class="context-list">
       <div class="context-card green">
-        <div class="brand-line"><span class="brand-name">nama</span><span class="brand-delta pos">+65.1% LFL</span></div>
-        <div class="context-text"><strong>The most encouraging line in the report.</strong> Best week in the window at &pound;8,212, from a brand that has been a chronic pricing problem since March &mdash; its own D2C site and UKJuicers both pricing below what we can match inside the margin floor. Something has changed here and it is worth finding out what, because if the comp position has moved we should press it, and if it has not then the demand is there regardless of price.</div>
+        <div class="brand-line"><span class="brand-name">Tech carried the week</span><span class="brand-delta pos">+&pound;20.5k combined</span></div>
+        <div class="context-text">Oura (+&pound;5,746), Garmin (+&pound;5,085), WHOOP (+&pound;3,827), Aarke (+&pound;2,744), Hyperice (+&pound;2,694) and Balance Phone (+&pound;2,426) between them added <strong>&pound;20.5k</strong>. Without tech the week would have been materially worse than &minus;2.9%. <strong>Oura's August retro is the single biggest gain in the book</strong> and is now two consecutive weeks up from the &pound;22.2k trough. Aarke is on its fourth week up despite MAP restricting any price response.</div>
       </div>
       <div class="context-card green">
-        <div class="brand-line"><span class="brand-name">Omnilux</span><span class="brand-delta pos">+42.4% LFL &middot; &pound;4,888</span></div>
-        <div class="context-text"><strong>Four weeks, four increases &mdash; the only genuinely sustained new brand we have.</strong> &pound;508 &rarr; &pound;3,364 &rarr; &pound;4,004 &rarr; &pound;4,888, and still climbing in a week where most brands fell. Set against Inhale H2 going to zero and CELLER8, Fittle and NIRA all collapsing after one good week, Omnilux is the exception rather than the pattern. Exclusive to Healf, top redlight priority, roughly 6x HigherDOSE. This one deserves real investment.</div>
+        <div class="brand-line"><span class="brand-name">nama</span><span class="brand-delta pos">+&pound;3,300 (+56.9%)</span></div>
+        <div class="context-text"><strong>The most encouraging line in the report.</strong> Best week in the window at &pound;9,103, from a brand that has been a chronic pricing problem since March &mdash; its own D2C site and UKJuicers both pricing below what we can match inside the margin floor. Something has shifted. Worth finding out what, because if the comp position moved we should press it, and if it has not then demand is there regardless of price.</div>
+      </div>
+      <div class="context-card green">
+        <div class="brand-line"><span class="brand-name">Omnilux &amp; Balance Phone</span><span class="brand-delta pos">+&pound;1,131 and +&pound;2,426</span></div>
+        <div class="context-text"><strong>The two new brands that are actually building.</strong> Omnilux has now gone four weeks, four increases &mdash; &pound;508 &rarr; &pound;3,364 &rarr; &pound;4,004 &rarr; &pound;5,134 &mdash; and is still climbing in a down week. Balance Phone is up 33.6% to &pound;9,638 and into the top 10, holding its restock gain rather than fading. Both are compounding rather than spiking, which is rare: Inhale H2, NIRA, Blueair, Reformed, Solawave and 8HOURS all gave back a strong week. Back these two.</div>
       </div>
       <div class="context-card amber">
-        <div class="brand-line"><span class="brand-name">Garmin</span><span class="brand-delta pos">+271.8% LFL &middot; &pound;6,026</span></div>
-        <div class="context-text">Biggest gainer of the week and its best result by a wide margin, from &pound;1,891 to &pound;6,026. <strong>I could not confirm the driver.</strong> The July retro ran 1&ndash;31 July and ended, so this is not that, and no August Garmin retro appears in #promos. Worth checking whether a new offer went live, or whether this is a product launch or placement change &mdash; if it is repeatable it matters more than the number suggests.</div>
-      </div>
-      <div class="context-card green">
-        <div class="brand-line"><span class="brand-name">Oura Ring &amp; WHOOP</span><span class="brand-delta pos">+17.7% and +12.1% LFL</span></div>
-        <div class="context-text">Tech is carrying the week. Oura's August retro is clearly working &mdash; two consecutive weeks up and now &pound;26.9k against the &pound;22.2k trough. WHOOP has grown for two weeks and is the largest brand in the book. Between them they are most of what is holding the week above &minus;5%.</div>
+        <div class="brand-line"><span class="brand-name">Garmin</span><span class="brand-delta pos">+&pound;5,085 (+269.0%)</span></div>
+        <div class="context-text">Second largest gain in the book and its best result by a wide margin. <strong>The driver is still unconfirmed.</strong> The July retro ran 1&ndash;31 July and ended, so this is not that, and no August Garmin retro appears in #promos. Separately, Garmin is set to "Segmented" in brand curation while COROS is "Hide" &mdash; queried on 6 August and unresolved. If a visibility change is behind this it is repeatable and matters well beyond the number.</div>
       </div>
     </div>
   </div>
@@ -614,66 +609,60 @@
   <div class="section">
     <div class="section-header">
       <div class="icon red">&#8595;</div>
-      <h2>Decliners &mdash; w/c 27 Jul &rarr; 3 Aug (like-for-like)</h2>
+      <h2>Decliners &mdash; w/c 27 Jul &rarr; 3 Aug</h2>
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Brand</th><th>w/c 20 Jul</th><th>w/c 27 Jul</th><th>w/c 3 Aug <span style="font-weight:400">(6d)</span></th><th>&Delta; % LFL</th></tr></thead>
+        <thead><tr><th>Brand</th><th>w/c 27 Jul</th><th>w/c 3 Aug</th><th>&Delta; &pound;</th><th>&Delta; %</th></tr></thead>
         <tbody>
-          <tr class="row-red"><td>Inhale H2</td><td>&pound;0</td><td>&pound;4,082</td><td>&pound;0</td><td class="val-neg">&minus;100%</td></tr>
-          <tr class="row-red"><td>8HOURS</td><td>&pound;0</td><td>&pound;1,110</td><td>&pound;110</td><td class="val-neg">&minus;88.4%</td></tr>
-          <tr class="row-red"><td>NIRA</td><td>&pound;2,854</td><td>&pound;3,466</td><td>&pound;608</td><td class="val-neg">&minus;79.5%</td></tr>
-          <tr class="row-red"><td>Blueair</td><td>&pound;1,659</td><td>&pound;2,724</td><td>&pound;571</td><td class="val-neg">&minus;75.6%</td></tr>
-          <tr class="row-red"><td>Reformed</td><td>&pound;466</td><td>&pound;1,345</td><td>&pound;284</td><td class="val-neg">&minus;75.4%</td></tr>
-          <tr class="row-red"><td>Nurosym</td><td>&pound;3,020</td><td>&pound;2,895</td><td>&pound;874</td><td class="val-neg">&minus;64.8%</td></tr>
-          <tr class="row-red"><td>Solawave</td><td>&pound;1,065</td><td>&pound;1,386</td><td>&pound;450</td><td class="val-neg">&minus;62.1%</td></tr>
-          <tr class="row-red"><td>Lifepro</td><td>&pound;3,615</td><td>&pound;3,152</td><td>&pound;1,205</td><td class="val-neg">&minus;55.4%</td></tr>
-          <tr class="row-red"><td>BON CHARGE</td><td>&pound;7,113</td><td>&pound;4,103</td><td>&pound;1,626</td><td class="val-neg">&minus;53.8%</td></tr>
-          <tr class="row-red"><td>Vivo Life</td><td>&pound;969</td><td>&pound;2,212</td><td>&pound;969</td><td class="val-neg">&minus;48.9%</td></tr>
-          <tr class="row-red"><td>Metagenics</td><td>&pound;2,078</td><td>&pound;5,328</td><td>&pound;2,366</td><td class="val-neg">&minus;48.2%</td></tr>
-          <tr class="row-red"><td>Inessa</td><td>&pound;3,078</td><td>&pound;4,365</td><td>&pound;2,312</td><td class="val-neg">&minus;38.2%</td></tr>
-          <tr class="row-red"><td>DoNotAge</td><td>&pound;3,240</td><td>&pound;3,175</td><td>&pound;1,693</td><td class="val-neg">&minus;37.8%</td></tr>
-          <tr class="row-red"><td>Hatch</td><td>&pound;2,979</td><td>&pound;4,072</td><td>&pound;2,181</td><td class="val-neg">&minus;37.5%</td></tr>
-          <tr class="row-red"><td>HigherDOSE</td><td>&pound;3,223</td><td>&pound;4,724</td><td>&pound;2,540</td><td class="val-neg">&minus;37.3%</td></tr>
-          <tr class="row-red"><td>SURI</td><td>&pound;5,725</td><td>&pound;8,328</td><td>&pound;5,011</td><td class="val-neg">&minus;29.8%</td></tr>
-          <tr class="row-red"><td>The Ultimate Human</td><td>&pound;3,219</td><td>&pound;4,192</td><td>&pound;2,610</td><td class="val-neg">&minus;27.4%</td></tr>
-          <tr class="row-red"><td>Kiki Health</td><td>&pound;7,092</td><td>&pound;7,990</td><td>&pound;5,209</td><td class="val-neg">&minus;23.9%</td></tr>
-          <tr class="row-red"><td>Form Nutrition</td><td>&pound;7,003</td><td>&pound;9,184</td><td>&pound;6,061</td><td class="val-neg">&minus;23.0%</td></tr>
-          <tr class="row-red"><td>Momentous</td><td>&pound;12,069</td><td>&pound;13,059</td><td>&pound;8,729</td><td class="val-neg">&minus;22.0%</td></tr>
-          <tr class="row-red"><td>Thorne</td><td>&pound;35,747</td><td>&pound;35,739</td><td>&pound;26,270</td><td class="val-neg">&minus;14.2%</td></tr>
-          <tr class="row-red"><td>COROS</td><td>&pound;17,385</td><td>&pound;17,627</td><td>&pound;13,370</td><td class="val-neg">&minus;11.5%</td></tr>
+          <tr class="row-red"><td>Thorne</td><td>&pound;35,739</td><td>&pound;30,926</td><td class="val-neg">&minus;&pound;4,813</td><td class="val-neg">&minus;13.5%</td></tr>
+          <tr class="row-red"><td>Inhale H2</td><td>&pound;4,083</td><td>&pound;0</td><td class="val-neg">&minus;&pound;4,083</td><td class="val-neg">&minus;100%</td></tr>
+          <tr class="row-red"><td>NIRA</td><td>&pound;3,466</td><td>&pound;608</td><td class="val-neg">&minus;&pound;2,858</td><td class="val-neg">&minus;82.5%</td></tr>
+          <tr class="row-red"><td>Metagenics</td><td>&pound;5,328</td><td>&pound;2,740</td><td class="val-neg">&minus;&pound;2,587</td><td class="val-neg">&minus;48.6%</td></tr>
+          <tr class="row-red"><td>Momentous</td><td>&pound;13,059</td><td>&pound;10,639</td><td class="val-neg">&minus;&pound;2,420</td><td class="val-neg">&minus;18.5%</td></tr>
+          <tr class="row-red"><td>Blueair</td><td>&pound;2,724</td><td>&pound;571</td><td class="val-neg">&minus;&pound;2,153</td><td class="val-neg">&minus;79.1%</td></tr>
+          <tr class="row-red"><td>BON CHARGE</td><td>&pound;4,103</td><td>&pound;1,959</td><td class="val-neg">&minus;&pound;2,145</td><td class="val-neg">&minus;52.3%</td></tr>
+          <tr class="row-red"><td>Form Nutrition</td><td>&pound;9,184</td><td>&pound;7,077</td><td class="val-neg">&minus;&pound;2,107</td><td class="val-neg">&minus;22.9%</td></tr>
+          <tr class="row-red"><td>SURI</td><td>&pound;8,328</td><td>&pound;6,227</td><td class="val-neg">&minus;&pound;2,101</td><td class="val-neg">&minus;25.2%</td></tr>
+          <tr class="row-red"><td>HigherDOSE</td><td>&pound;4,724</td><td>&pound;2,687</td><td class="val-neg">&minus;&pound;2,037</td><td class="val-neg">&minus;43.1%</td></tr>
+          <tr class="row-red"><td>Nurosym</td><td>&pound;2,895</td><td>&pound;874</td><td class="val-neg">&minus;&pound;2,022</td><td class="val-neg">&minus;69.8%</td></tr>
+          <tr class="row-red"><td>Lifepro</td><td>&pound;3,152</td><td>&pound;1,348</td><td class="val-neg">&minus;&pound;1,805</td><td class="val-neg">&minus;57.3%</td></tr>
+          <tr class="row-red"><td>Kiki Health</td><td>&pound;7,990</td><td>&pound;6,281</td><td class="val-neg">&minus;&pound;1,709</td><td class="val-neg">&minus;21.4%</td></tr>
+          <tr class="row-red"><td>Inessa</td><td>&pound;4,365</td><td>&pound;2,953</td><td class="val-neg">&minus;&pound;1,411</td><td class="val-neg">&minus;32.3%</td></tr>
+          <tr class="row-red"><td>Hatch</td><td>&pound;4,073</td><td>&pound;2,821</td><td class="val-neg">&minus;&pound;1,251</td><td class="val-neg">&minus;30.7%</td></tr>
+          <tr class="row-red"><td>DoNotAge</td><td>&pound;3,175</td><td>&pound;2,032</td><td class="val-neg">&minus;&pound;1,142</td><td class="val-neg">&minus;36.0%</td></tr>
+          <tr class="row-red"><td>Vivo Life</td><td>&pound;2,212</td><td>&pound;1,143</td><td class="val-neg">&minus;&pound;1,069</td><td class="val-neg">&minus;48.3%</td></tr>
+          <tr class="row-red"><td>The Ultimate Human</td><td>&pound;4,192</td><td>&pound;3,142</td><td class="val-neg">&minus;&pound;1,050</td><td class="val-neg">&minus;25.1%</td></tr>
+          <tr class="row-red"><td>Reformed</td><td>&pound;1,345</td><td>&pound;328</td><td class="val-neg">&minus;&pound;1,017</td><td class="val-neg">&minus;75.6%</td></tr>
+          <tr class="row-red"><td>8HOURS</td><td>&pound;1,110</td><td>&pound;147</td><td class="val-neg">&minus;&pound;963</td><td class="val-neg">&minus;86.7%</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="context-list">
       <div class="context-card red">
-        <div class="brand-line"><span class="brand-name">Inhale H2</span><span class="brand-delta neg">&pound;4,082 &rarr; &pound;0</span></div>
-        <div class="context-text"><strong>The debut went to zero.</strong> Last week it was the strongest new-brand opening in the window and I flagged it as needing watching. It recorded nothing at all this week, which for a brand that did &pound;4.1k is almost certainly a stock-out or a listing problem rather than demand disappearing overnight. RRP was still being set on 28 July, so the launch was not fully bedded in. <strong>Worth an immediate check</strong> &mdash; if it is a listing issue, that is &pound;4k a week sitting idle.</div>
+        <div class="brand-line"><span class="brand-name">Inhale H2</span><span class="brand-delta neg">&pound;4,083 &rarr; &pound;0</span></div>
+        <div class="context-text"><strong>The debut went to zero.</strong> Last week it was the strongest new-brand opening in the window. It recorded nothing at all this week, which for a brand that did &pound;4.1k is almost certainly a stock-out or a listing problem rather than demand disappearing overnight. RRP was still being set on 28 July, so the launch was never fully bedded in. <strong>Worth checking today</strong> &mdash; if it is a listing fault that is &pound;4k a week idle, and it is the second largest single decline in the book.</div>
       </div>
-      <div class="context-card red">
-        <div class="brand-line"><span class="brand-name">Thorne</span><span class="brand-delta neg">&minus;14.2% LFL &middot; &minus;&pound;9,469 raw</span></div>
-        <div class="context-text">The largest single decline in the book. <strong>About half is explained by discontinuations</strong> &mdash; Magnesium Glycinate and Whey Protein Isolate Chocolate went on 28 July carrying &pound;2,241/week of NC, now both at zero, accounting for 46% of the fall against the last clean week. The other half is not yet explained and is worth checking across the rest of the range. See the discontinued SKU section above.</div>
-      </div>
-      <div class="context-card amber">
-        <div class="brand-line"><span class="brand-name">BON CHARGE</span><span class="brand-delta neg">&minus;53.8% LFL</span><span class="tag post-retro">Post-retro</span></div>
-        <div class="context-text">Second consecutive week down and now &pound;1,626 against &pound;7,113 two weeks ago. This is worse than a normal post-retro fall because a new comp started discounting on 3 August, right as the retro ended &mdash; Face the Future was flagged and the match request is still open. Retro payback plus an unanswered pricing flag compounding.</div>
-      </div>
-      <div class="context-card red">
-        <div class="brand-line"><span class="brand-name">COROS</span><span class="brand-delta neg">&minus;11.5% LFL</span><span class="tag no-disc">MAP</span></div>
-        <div class="context-text">Back to falling after a single flat week, and now &pound;13.4k against &pound;22.7k in late June. The pricing-threshold question is still open and unanswered. Separately, COROS is set to <strong>"Hide"</strong> in brand curation while Garmin is "Segmented" &mdash; that was queried on 6 August and not resolved. Given Garmin quadrupled this week and COROS keeps falling, the visibility difference is worth ruling in or out before we conclude this is purely price.</div>
+      <div class="context-card purple">
+        <div class="brand-line"><span class="brand-name">BON CHARGE</span><span class="brand-delta neg">&minus;&pound;2,145 (&minus;52.3%)</span><span class="tag post-retro">Post-retro</span></div>
+        <div class="context-text">Second consecutive week down and now &pound;1,959 against a &pound;5,497 pre-retro base &mdash; so it has given back the retro volume <em>and</em> gone below where it started. A comp began discounting on 3 August, right as the retro ended, and that match request is still open. Retro payback plus an unanswered pricing flag compounding. The direct contrast with Metagenics.</div>
       </div>
       <div class="context-card amber">
-        <div class="brand-line"><span class="brand-name">SURI</span><span class="brand-delta neg">&minus;29.8% LFL</span></div>
-        <div class="context-text">Down again after recovering last week. This brand has now moved sharply in three consecutive weeks in whichever direction our price position moved, so the first thing to check is where we currently sit against Boots, John Lewis and Currys. A SKU was also discontinued on 5 August. The exclusive-retro-for-EU deal remains the structural fix.</div>
+        <div class="brand-line"><span class="brand-name">SURI</span><span class="brand-delta neg">&minus;&pound;2,101 (&minus;25.2%)</span></div>
+        <div class="context-text">Down again after recovering last week. SURI has now moved sharply in three consecutive weeks, each time tracking our price position &mdash; so the first check is where we sit against Boots, John Lewis and Currys today. A SKU was also discontinued on 5 August. The exclusive-retro-for-EU deal remains the structural fix.</div>
       </div>
       <div class="context-card">
-        <div class="brand-line"><span class="brand-name">New brands: NIRA, Blueair, Reformed, Solawave, 8HOURS</span><span class="brand-delta neg">all &minus;60% to &minus;90%</span></div>
-        <div class="context-text">Every one of these was in last week's gainers list and every one has collapsed. Combined with Inhale H2 at zero, that is six new brands giving back a strong week in a single move. The pattern is now consistent enough to plan around: <strong>a new brand's first strong week is not a run-rate</strong>. Omnilux is the only one in months that has compounded rather than spiked, which is what makes it worth backing.</div>
+        <div class="brand-line"><span class="brand-name">New brands giving it back</span><span class="brand-delta neg">NIRA, Blueair, Nurosym, Lifepro, Reformed, 8HOURS</span></div>
+        <div class="context-text">Six brands down 57&ndash;87%, all of which were in last week's gainers, together <strong>&minus;&pound;10.8k</strong>. Add Inhale H2 at zero and that is &pound;14.9k of decline from brands that looked strong seven days ago. <strong>A new brand's first big week is not a run-rate</strong> &mdash; the pattern is now consistent enough to plan around, and it is exactly why Omnilux and Balance Phone compounding matters so much.</div>
       </div>
       <div class="context-card red">
-        <div class="brand-line"><span class="brand-name">Momentous &amp; Form Nutrition</span><span class="brand-delta neg">&minus;22.0% and &minus;23.0% LFL</span></div>
-        <div class="context-text">Both hand back last week's gains. Momentous drops &pound;4.3k after two weeks of stock recovery, and Form Nutrition loses the &pound;9.2k high it hit on approved comp matching. Neither has a flagged pricing or stock issue this week, so these look like normal give-back after a strong week rather than anything structural.</div>
+        <div class="brand-line"><span class="brand-name">Momentous &amp; Form Nutrition</span><span class="brand-delta neg">&minus;&pound;2,420 and &minus;&pound;2,107</span></div>
+        <div class="context-text">Both give back part of last week's gains. Momentous had recovered on stock and drops to &pound;10,639, still well above the &pound;8,691 trough. Form Nutrition loses the &pound;9,184 high it reached on approved comp matching but holds &pound;7,077, above its early-July level. Neither has a flagged pricing or stock issue this week, so these read as normal give-back after a strong week.</div>
+      </div>
+      <div class="context-card amber">
+        <div class="brand-line"><span class="brand-name">Kiki Health</span><span class="brand-delta neg">&minus;&pound;1,709 (&minus;21.4%)</span></div>
+        <div class="context-text">Reverses two weeks of gains despite unauthorised resellers having been cut off, which was expected to improve the market. Kiki also had SKUs discontinued on 4 August. Worth checking whether the reseller cut-off has actually held or whether the delistings are the cause.</div>
       </div>
     </div>
   </div>
@@ -687,29 +676,29 @@
     <div class="takeaways">
       <div class="takeaway">
         <div class="num">1</div>
-        <div class="text"><strong>Read &minus;5.0%, not &minus;18.5%.</strong> The raw number is a six-day week against seven. But &minus;5.0% like-for-like is a real decline, and the breadth confirms it &mdash; 213 brands up against 276 down, an almost exact mirror of last week. The run-rate is back below the June average after one week above it.</div>
+        <div class="text"><strong>The problem is acquisition volume, not basket.</strong> Sales down 2.9% but new customers down <strong>7.6%</strong>, while net sales per new customer rose to &pound;68.31 &mdash; the highest in the window. We are converting 627 fewer people at a better rate. Against the 45k quarterly NC target the count matters more than the sales line, so this is the number to watch. Worth pairing with CAC by week before concluding.</div>
       </div>
       <div class="takeaway">
         <div class="num">2</div>
-        <div class="text"><strong>The Metagenics retro gain was real.</strong> It has settled at &pound;394/day against a &pound;297/day pre-retro base &mdash; <strong>33% above where it started</strong> &mdash; and held there for a full week after support ended. The &minus;48% headline measures against the retro peak, which is the wrong baseline. Compare post-retro to pre-retro, never to peak. BON CHARGE is the contrast: it settled well below its pre-retro base. Retros can create a durable step up, and Metagenics is the one to learn from.</div>
+        <div class="text"><strong>Tech held the week up.</strong> Oura (+&pound;5.7k on the August retro), Garmin (+&pound;5.1k), WHOOP (+&pound;3.8k), Aarke (+&pound;2.7k), Hyperice (+&pound;2.7k) and Balance Phone (+&pound;2.4k) added &pound;20.5k between them. Oura's retro is the biggest single gain in the book. Without tech this week looks materially worse.</div>
       </div>
       <div class="takeaway">
         <div class="num">3</div>
-        <div class="text"><strong>Balance Phone and Omnilux are the two new brands actually picking up.</strong> Omnilux has gone four weeks, four increases, to &pound;4,888 and is still climbing in a down week. Balance Phone is holding its restock gain at &pound;7,304, up 18.2%. Both are compounding rather than spiking. Everything else that debuted strongly has given it straight back &mdash; Inhale H2 to zero, and NIRA, Blueair, Reformed, Solawave and 8HOURS all down 60&ndash;90%. Back the two that are building.</div>
+        <div class="text"><strong>The Metagenics retro gain was real.</strong> It settled at &pound;2,740 against a &pound;2,078 pre-retro base &mdash; 32% above where it started &mdash; confirmed now on a complete week. BON CHARGE is the opposite: back below its pre-retro base with a comp discounting into the gap. Judge a retro on post versus pre, never post versus peak, and work out what Metagenics did differently.</div>
       </div>
       <div class="takeaway">
         <div class="num">4</div>
-        <div class="text"><strong>Tech is holding the week up.</strong> WHOOP (+12.1%), Oura (+17.7% on the August retro), Aarke (+15.2%), Balance Phone (+18.2%) and Hyperice (+33.8%) are all up. Without them the week would look considerably worse than &minus;5%. Oura's August retro is the clearest thing working right now.</div>
+        <div class="text"><strong>Discontinued SKUs cost more than anything in the pricing queue.</strong> &pound;6,342 of NC a week, ~&pound;330k annualised, measured directly. Seed is at zero on a single short-expiry tag worth &pound;1,859/week, with three conflicting explanations and no resolution. Organic Protein Company was cut mid-ramp and has started to recover, so it is retrievable. Add Inhale H2 at zero and there are three recoverable lines worth roughly &pound;12k a week combined.</div>
       </div>
       <div class="takeaway">
         <div class="num">5</div>
-        <div class="text"><strong>Discontinued SKUs are costing more than any pricing issue on the board.</strong> Measured directly on NC, five SKU groups account for <strong>&pound;6,267 a week</strong> &mdash; around &pound;326k annualised &mdash; and four are now at or near zero. Seed alone is &pound;1,859/week, switched off by a single short-expiry tag with three conflicting explanations and no resolution. Organic Protein Company was cut while accelerating at &pound;2,461/week. Add Inhale H2 sitting at zero and there are three recoverable lines here, all bigger than anything in the pricing queue. Settle Seed first; it is the cleanest.</div>
+        <div class="text"><strong>Back Omnilux and Balance Phone; stop reading debut weeks as run-rates.</strong> Omnilux is four weeks into four consecutive increases at &pound;5,134 and still climbing in a down week. Balance Phone is up 33.6% into the top 10. Meanwhile Inhale H2, NIRA, Blueair, Nurosym, Lifepro, Reformed and 8HOURS gave back &pound;14.9k between them after one strong week each. Two brands are compounding; the rest are noise.</div>
       </div>
     </div>
   </div>
 
   <div class="footer">
-    NC Brand Sales Deep Dive &bull; Report #14 (partial week &mdash; 6 of 7 days) &bull; Siddhansh Arora, Head of Trading &bull; Data: ThoughtSpot NC Net Sales, extract 9 Aug 2026
+    NC Brand Sales Deep Dive &bull; Report #14 &bull; Siddhansh Arora, Head of Trading &bull; Data: Healf warehouse (daily_kpis) via data agent, 10 Aug 2026
   </div>
 
 </div>
