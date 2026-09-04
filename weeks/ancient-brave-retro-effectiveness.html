@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient + Brave — Retro Effectiveness</title>
+<style>
+  :root {
+    --slate-900: #0f172a;
+    --slate-800: #1e293b;
+    --slate-700: #334155;
+    --slate-600: #475569;
+    --slate-500: #64748b;
+    --slate-400: #94a3b8;
+    --slate-300: #cbd5e1;
+    --slate-200: #e2e8f0;
+    --slate-100: #f1f5f9;
+    --slate-50: #f8fafc;
+    --green-600: #16a34a;
+    --green-100: #dcfce7;
+    --green-50: #f0fdf4;
+    --red-600: #dc2626;
+    --red-100: #fee2e2;
+    --red-50: #fef2f2;
+    --amber-600: #d97706;
+    --amber-100: #fef3c7;
+    --amber-50: #fffbeb;
+    --blue-600: #2563eb;
+    --blue-100: #dbeafe;
+    --purple-600: #7c3aed;
+    --purple-100: #ede9fe;
+    --purple-50: #f5f3ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--slate-50);
+    color: var(--slate-800);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--slate-500);
+    text-decoration: none;
+    margin-bottom: 1rem;
+    transition: color 0.15s;
+  }
+  .back-link:hover { color: var(--blue-600); }
+  .back-link svg { width: 14px; height: 14px; }
+
+  .header { margin-bottom: 2.5rem; }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  .header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--slate-900);
+    letter-spacing: -0.02em;
+  }
+  .header .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .header .badge.positive { background: var(--green-100); color: var(--green-600); }
+  .header .badge.negative { background: var(--red-100); color: var(--red-600); }
+  .header .badge.neutral { background: var(--amber-100); color: var(--amber-600); }
+  .header .subtitle { color: var(--slate-500); font-size: 0.875rem; }
+  .header .subtitle strong { color: var(--slate-700); }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .stat-card {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .stat-card .label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--slate-500);
+    margin-bottom: 0.25rem;
+  }
+  .stat-card .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--slate-900);
+  }
+  .stat-card .delta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+  }
+  .stat-card .delta.negative { color: var(--red-600); }
+  .stat-card .delta.positive { color: var(--green-600); }
+
+  .section { margin-bottom: 2.5rem; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .section-header .icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .section-header .icon.green { background: var(--green-100); }
+  .section-header .icon.red { background: var(--red-100); }
+  .section-header .icon.amber { background: var(--amber-100); }
+  .section-header .icon.blue { background: var(--blue-100); }
+  .section-header .icon.purple { background: var(--purple-100); }
+  .section-header h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--slate-900);
+  }
+
+  .table-wrap {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 12px;
+    overflow-x: auto;
+    margin-bottom: 1.25rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+  thead th {
+    background: var(--slate-800);
+    color: white;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    white-space: nowrap;
+  }
+  thead th:not(:first-child) { text-align: right; }
+  tbody td {
+    padding: 0.625rem 1rem;
+    border-bottom: 1px solid var(--slate-100);
+    white-space: nowrap;
+  }
+  tbody td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+  tbody td:first-child { font-weight: 600; color: var(--slate-800); }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr.row-green { background: var(--green-50); }
+  tbody tr.row-red { background: var(--red-50); }
+  tbody tr.row-amber { background: var(--amber-50); }
+  .val-pos { color: var(--green-600); font-weight: 600; }
+  .val-neg { color: var(--red-600); font-weight: 600; }
+
+  .context-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .context-card {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    border-left: 4px solid var(--slate-300);
+  }
+  .context-card.green { border-left-color: var(--green-600); }
+  .context-card.red { border-left-color: var(--red-600); }
+  .context-card.amber { border-left-color: var(--amber-600); }
+  .context-card.purple { border-left-color: var(--purple-600); }
+  .context-card .brand-line {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+    flex-wrap: wrap;
+  }
+  .context-card .brand-name {
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--slate-900);
+  }
+  .context-card .brand-delta {
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+  .context-card .brand-delta.pos { color: var(--green-600); }
+  .context-card .brand-delta.neg { color: var(--red-600); }
+  .context-card .tag {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .tag.retro { background: var(--green-100); color: var(--green-600); }
+  .tag.no-disc { background: var(--amber-100); color: var(--amber-600); }
+  .tag.t1 { background: var(--blue-100); color: var(--blue-600); }
+  .tag.t2 { background: var(--slate-200); color: var(--slate-700); }
+  .tag.t3 { background: var(--slate-100); color: var(--slate-500); }
+  .tag.post-retro { background: var(--purple-100); color: var(--purple-600); }
+  .tag.lost-rev { background: var(--red-100); color: var(--red-600); }
+  .tag.oos { background: var(--amber-100); color: var(--amber-600); }
+  .context-card .context-text {
+    font-size: 0.8125rem;
+    color: var(--slate-600);
+    line-height: 1.5;
+  }
+
+  .takeaways {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .takeaway {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--slate-100);
+  }
+  .takeaway:last-child { border-bottom: none; }
+  .takeaway .num {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: var(--slate-800);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+  .takeaway .text {
+    font-size: 0.875rem;
+    color: var(--slate-700);
+    line-height: 1.55;
+  }
+  .takeaway .text strong { color: var(--slate-900); }
+
+  /* Pricing focus panel */
+  .focus-panel {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-top: 4px solid var(--blue-600);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .bridge {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .bridge-item {
+    background: var(--slate-50);
+    border: 1px solid var(--slate-200);
+    border-radius: 8px;
+    padding: 0.75rem;
+    text-align: center;
+  }
+  .bridge-item.drag { background: var(--red-50); border-color: var(--red-100); }
+  .bridge-item.lift { background: var(--green-50); border-color: var(--green-100); }
+  .bridge-item .bl {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--slate-500);
+  }
+  .bridge-item .bv {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--slate-900);
+    font-variant-numeric: tabular-nums;
+  }
+  .bridge-item.drag .bv { color: var(--red-600); }
+  .bridge-item.lift .bv { color: var(--green-600); }
+  .focus-lead {
+    font-size: 0.875rem;
+    color: var(--slate-700);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+  .focus-lead strong { color: var(--slate-900); }
+  .sub-head {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--slate-900);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 1.25rem 0 0.625rem;
+  }
+  .action-list { list-style: none; }
+  .action-list li {
+    font-size: 0.8125rem;
+    color: var(--slate-700);
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    border-bottom: 1px solid var(--slate-100);
+    position: relative;
+    line-height: 1.5;
+  }
+  .action-list li:last-child { border-bottom: none; }
+  .action-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--blue-600);
+    font-weight: 700;
+  }
+  .action-list strong { color: var(--slate-900); }
+
+  .note-box {
+    background: var(--amber-50);
+    border: 1px solid var(--amber-100);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 2.5rem;
+    font-size: 0.8125rem;
+    color: var(--slate-700);
+  }
+  .note-box strong { color: var(--slate-900); }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--slate-200);
+    font-size: 0.75rem;
+    color: var(--slate-400);
+    text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .container { padding: 1rem; }
+    .header h1 { font-size: 1.375rem; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    table { font-size: 0.8125rem; }
+    thead th, tbody td { padding: 0.5rem 0.625rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <a class="back-link" href="../index.html">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12L6 8l4-4"/></svg>
+    All reports
+  </a>
+
+  <style>
+    .grid-wrap { background:#fff; border:1px solid var(--slate-200); border-radius:12px; padding:1.25rem; margin-bottom:1.25rem; overflow-x:auto; }
+    .wgrid { display:grid; grid-template-columns:76px repeat(5,1fr); gap:8px; min-width:720px; }
+    .wgrid .colhead { font-size:.6875rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--slate-400); text-align:center; padding-bottom:2px; }
+    .wgrid .rowhead { font-size:.8125rem; font-weight:700; color:var(--slate-800); display:flex; align-items:center; }
+    .cell { border:1px solid var(--slate-200); border-radius:9px; padding:.6rem .5rem; text-align:center; background:var(--slate-50); }
+    .cell .amt { font-size:1rem; font-weight:700; color:var(--slate-900); font-variant-numeric:tabular-nums; }
+    .cell .mgn { font-size:.6875rem; font-weight:600; color:var(--slate-500); margin-top:1px; }
+    .cell .lbl { font-size:.5625rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; margin-top:4px; }
+    .cell.empty { background:transparent; border:1px dashed var(--slate-200); }
+    .cell.retro { background:#E9F5EC; border:2px solid #2E7D3E; }
+    .cell.retro .lbl, .cell.retro .mgn { color:#2E7D3E; }
+    .cell.self { background:#FBF0EC; border:2px solid #B0421E; }
+    .cell.self .lbl, .cell.self .mgn { color:#B0421E; }
+    .legend { display:flex; gap:1.25rem; flex-wrap:wrap; font-size:.75rem; color:var(--slate-600); margin-top:.25rem; }
+    .legend span { display:inline-flex; align-items:center; gap:.4rem; }
+    .sw { width:13px; height:13px; border-radius:3px; display:inline-block; }
+  </style>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-top">
+      <h1>Ancient + Brave &mdash; Retro Effectiveness</h1>
+      <span class="badge negative">Retro delivered +4%</span>
+    </div>
+    <p class="subtitle">
+      <strong>May&ndash;Aug 2026, all customers</strong> (UK e-com, excl. Healf Zone, HX, POS). The June retro moved sales <strong>+4.1%</strong>. A self-funded discount in May moved them <strong>+20.3%</strong>. The difference is what was in scope: the retro excluded all five hero jars.
+    </p>
+  </div>
+
+  <!-- Stat cards -->
+  <div class="stats">
+    <div class="stat-card">
+      <div class="label">No support &middot; 17 weeks</div>
+      <div class="value">&pound;10.9k<span style="font-size:.9rem;color:var(--slate-400)">/wk</span></div>
+      <div class="delta">463 units &middot; 43.5% margin</div>
+    </div>
+    <div class="stat-card" style="border-color:#2E7D3E;border-width:2px">
+      <div class="label" style="color:#2E7D3E">Retro &middot; 15+22 Jun, jars excluded</div>
+      <div class="value">&pound;11.3k<span style="font-size:.9rem;color:var(--slate-400)">/wk</span></div>
+      <div class="delta" style="color:#2E7D3E">522 units &middot; 42.6% adj &middot; <strong>+4.1% sales</strong></div>
+    </div>
+    <div class="stat-card" style="border-color:#B0421E;border-width:2px">
+      <div class="label" style="color:#B0421E">Self-funded &middot; 25 May + 1 Jun</div>
+      <div class="value">&pound;13.1k<span style="font-size:.9rem;color:var(--slate-400)">/wk</span></div>
+      <div class="delta" style="color:#B0421E">600 units &middot; 39.3% margin &middot; <strong>+20.3% sales</strong></div>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon amber">&#128197;</div>
+      <h2>Weekly net sales by month &mdash; retro weeks highlighted</h2>
+    </div>
+    <div class="grid-wrap">
+      <div class="wgrid">
+        <div></div>
+        <div class="colhead">Week 1</div><div class="colhead">Week 2</div><div class="colhead">Week 3</div><div class="colhead">Week 4</div><div class="colhead">Week 5</div>
+
+        <div class="rowhead">May</div>
+        <div class="cell"><div class="amt">&pound;11.2k</div><div class="mgn">45.2%</div></div>
+        <div class="cell"><div class="amt">&pound;11.0k</div><div class="mgn">44.1%</div></div>
+        <div class="cell"><div class="amt">&pound;10.5k</div><div class="mgn">41.8%</div></div>
+        <div class="cell self"><div class="amt">&pound;15.2k</div><div class="mgn">38.5% &middot; no rebate</div><div class="lbl">Best week &middot; self-funded</div></div>
+        <div class="cell empty"></div>
+
+        <div class="rowhead">June</div>
+        <div class="cell self"><div class="amt">&pound;11.0k</div><div class="mgn">40.3% &middot; no rebate</div><div class="lbl">Self-funded</div></div>
+        <div class="cell"><div class="amt">&pound;9.5k</div><div class="mgn">43.0%</div></div>
+        <div class="cell retro"><div class="amt">&pound;12.5k</div><div class="mgn">37.8% &rarr; 42.2%</div><div class="lbl">Retro &middot; jars excluded</div></div>
+        <div class="cell retro"><div class="amt">&pound;10.2k</div><div class="mgn">40.4% &rarr; 43.1%</div><div class="lbl">Retro &middot; jars excluded</div></div>
+        <div class="cell"><div class="amt">&pound;11.4k</div><div class="mgn">43.9%</div></div>
+
+        <div class="rowhead">July</div>
+        <div class="cell"><div class="amt">&pound;10.5k</div><div class="mgn">43.0%</div></div>
+        <div class="cell"><div class="amt">&pound;10.5k</div><div class="mgn">44.1%</div></div>
+        <div class="cell"><div class="amt">&pound;9.9k</div><div class="mgn">43.6%</div></div>
+        <div class="cell"><div class="amt">&pound;11.8k</div><div class="mgn">43.0%</div></div>
+        <div class="cell empty"></div>
+
+        <div class="rowhead">August</div>
+        <div class="cell"><div class="amt">&pound;9.1k</div><div class="mgn">42.9%</div></div>
+        <div class="cell"><div class="amt">&pound;7.8k</div><div class="mgn">43.4%</div></div>
+        <div class="cell"><div class="amt">&pound;10.5k</div><div class="mgn">44.2%</div></div>
+        <div class="cell"><div class="amt">&pound;11.1k</div><div class="mgn">42.7%</div></div>
+        <div class="cell empty"></div>
+      </div>
+      <div class="legend">
+        <span><i class="sw" style="background:#E9F5EC;border:2px solid #2E7D3E"></i> Brand-funded retro (sachets only)</span>
+        <span><i class="sw" style="background:#FBF0EC;border:2px solid #B0421E"></i> We discounted, no rebate</span>
+        <span><i class="sw" style="background:var(--slate-50);border:1px solid var(--slate-200)"></i> No promotional support</span>
+      </div>
+      <div style="font-size:.75rem;color:var(--slate-500);margin-top:.75rem">Margin shown is product margin. Where a rebate was received, the arrow shows product margin &rarr; retro-adjusted margin. Extended to four months because the key comparison week falls in May.</div>
+    </div>
+
+    <div class="context-list">
+      <div class="context-card amber">
+        <div class="brand-line"><span class="brand-name">The retro barely registered</span><span class="brand-delta neg">+4.1% sales, &pound;813 rebate</span></div>
+        <div class="context-text">Two retro weeks produced <strong>&pound;11.3k a week against a &pound;10.9k baseline</strong>. That is inside normal weekly noise &mdash; the brand did &pound;11.4k the week after the retro ended with no support at all. Total rebate income was <strong>&pound;813</strong>, against &pound;4,558 for Metagenics over the same period.<br><br>The margin mechanic worked exactly as it should: product margin fell to 37.8% and the rebate lifted it back to 42.2%. We were protected. There simply was not any volume to protect.</div>
+      </div>
+      <div class="context-card red">
+        <div class="brand-line"><span class="brand-name">Why &mdash; all five hero jars were excluded</span></div>
+        <div class="context-text">The promo terms carved out <strong>True Collagen Jar, Wild Collagen Jar, Creatine Jar, Hydration Jar and Nightcap Jar</strong>. Sachets only. So the 20% applied to the peripheral range while the hero products stayed at full price.<br><br><strong>The counter-evidence is in the same dataset.</strong> The best week in four months was 25 May at &pound;15.2k, up 40% on baseline &mdash; a self-funded discount with a 16.7% discount rate and no exclusions. Ancient + Brave clearly does respond to price. It just does not respond to a discount on the products people are not coming for.</div>
+      </div>
+      <div class="context-card amber">
+        <div class="brand-line"><span class="brand-name">And there is margin headroom to do it properly</span><span class="brand-delta">43.5% baseline</span></div>
+        <div class="context-text">Ancient + Brave runs at <strong>43.5% product margin</strong>, higher than Metagenics at 39.8%, and it held at 42&ndash;44% every single week including through the discounted ones. This is not a brand where the jars cannot take a discount on our side. The exclusion was a brand-side condition, not a margin constraint.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DECLINE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon red">&#128201;</div>
+      <h2>Meanwhile the brand is shrinking</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Month</th><th>Net sales/wk</th><th>Units/wk</th><th>Product margin</th><th>Retro income</th></tr></thead>
+        <tbody>
+          <tr><td>April</td><td>&pound;12,639</td><td>533</td><td>43.7%</td><td>&pound;0</td></tr>
+          <tr><td>May</td><td>&pound;11,990</td><td>524</td><td>42.1%</td><td>&pound;0</td></tr>
+          <tr class="row-green"><td>June</td><td>&pound;10,899</td><td>483</td><td>41.0%</td><td>&pound;813</td></tr>
+          <tr><td>July</td><td>&pound;10,660</td><td>453</td><td>43.4%</td><td>&pound;0</td></tr>
+          <tr class="row-red"><td><strong>August</strong></td><td><strong>&pound;9,618</strong></td><td><strong>414</strong></td><td>43.3%</td><td>&pound;0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="context-list">
+      <div class="context-card red">
+        <div class="brand-line"><span class="brand-name">Down 24% in four months, margin untouched</span><span class="brand-delta neg">&pound;12.6k &rarr; &pound;9.6k/wk</span></div>
+        <div class="context-text">Sales have fallen every month since April and units are down 22%. Margin has not moved &mdash; we are holding 43% and losing volume. <strong>Nothing is booked after June</strong>, so on current plans there is no support in Q4 either.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARISON -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon blue">&#9878;</div>
+      <h2>Read alongside Metagenics &mdash; three failed retros, one that worked</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Brand &amp; window</th><th>Terms</th><th>Mechanic</th><th>Sales effect</th></tr></thead>
+        <tbody>
+          <tr class="row-green"><td>Metagenics &middot; 15&ndash;29 Jun</td><td>20% cofunded</td><td>Visible, full range</td><td class="val-pos"><strong>+45%</strong></td></tr>
+          <tr class="row-red"><td>Metagenics &middot; 16&ndash;30 Apr</td><td>25% <strong>fully funded</strong></td><td>Code hidden behind newsletter</td><td class="val-neg">Nothing</td></tr>
+          <tr class="row-red"><td>Ancient + Brave &middot; 17&ndash;24 Jun</td><td>20% cofunded</td><td>All five hero jars excluded</td><td class="val-neg">+4%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="context-list">
+      <div class="context-card green">
+        <div class="brand-line"><span class="brand-name">The pattern across both brands</span></div>
+        <div class="context-text"><strong>Retro depth and funding split are not what determines the outcome. Scope and visibility are.</strong><br><br>The best-funded retro we ran all year was Metagenics at 25% fully funded, and it produced nothing because the code was hidden. Ancient + Brave got the same 20% cofunded terms as the Metagenics retro that drove +45%, and produced +4% because the hero range was carved out.<br><br>One deal shape worked: <strong>visible, on-site, no hero exclusions.</strong> That is the term to negotiate for, ahead of percentage.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Ancient + Brave retro effectiveness &bull; Siddhansh Arora, Head of Trading &bull; Data: Healf warehouse + #promos calendar, 31 Aug 2026
+  </div>
+
+</div>
+</body>
+</html>
