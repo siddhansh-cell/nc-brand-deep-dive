@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EC Brand Sales Deep Dive — w/c 14 Sep vs 21 Sep 2026</title>
+<style>
+  :root {
+    --slate-900: #0f172a;
+    --slate-800: #1e293b;
+    --slate-700: #334155;
+    --slate-600: #475569;
+    --slate-500: #64748b;
+    --slate-400: #94a3b8;
+    --slate-300: #cbd5e1;
+    --slate-200: #e2e8f0;
+    --slate-100: #f1f5f9;
+    --slate-50: #f8fafc;
+    --green-600: #16a34a;
+    --green-100: #dcfce7;
+    --green-50: #f0fdf4;
+    --red-600: #dc2626;
+    --red-100: #fee2e2;
+    --red-50: #fef2f2;
+    --amber-600: #d97706;
+    --amber-100: #fef3c7;
+    --amber-50: #fffbeb;
+    --blue-600: #2563eb;
+    --blue-100: #dbeafe;
+    --purple-600: #7c3aed;
+    --purple-100: #ede9fe;
+    --purple-50: #f5f3ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--slate-50);
+    color: var(--slate-800);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--slate-500);
+    text-decoration: none;
+    margin-bottom: 1rem;
+    transition: color 0.15s;
+  }
+  .back-link:hover { color: var(--blue-600); }
+  .back-link svg { width: 14px; height: 14px; }
+
+  .header { margin-bottom: 2.5rem; }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  .header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--slate-900);
+    letter-spacing: -0.02em;
+  }
+  .header .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .header .badge.positive { background: var(--green-100); color: var(--green-600); }
+  .header .badge.negative { background: var(--red-100); color: var(--red-600); }
+  .header .badge.neutral { background: var(--amber-100); color: var(--amber-600); }
+  .header .subtitle { color: var(--slate-500); font-size: 0.875rem; }
+  .header .subtitle strong { color: var(--slate-700); }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .stat-card {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .stat-card .label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--slate-500);
+    margin-bottom: 0.25rem;
+  }
+  .stat-card .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--slate-900);
+  }
+  .stat-card .delta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+  }
+  .stat-card .delta.negative { color: var(--red-600); }
+  .stat-card .delta.positive { color: var(--green-600); }
+
+  .section { margin-bottom: 2.5rem; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .section-header .icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .section-header .icon.green { background: var(--green-100); }
+  .section-header .icon.red { background: var(--red-100); }
+  .section-header .icon.amber { background: var(--amber-100); }
+  .section-header .icon.blue { background: var(--blue-100); }
+  .section-header .icon.purple { background: var(--purple-100); }
+  .section-header h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--slate-900);
+  }
+
+  .table-wrap {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 12px;
+    overflow-x: auto;
+    margin-bottom: 1.25rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+  thead th {
+    background: var(--slate-800);
+    color: white;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    white-space: nowrap;
+  }
+  thead th:not(:first-child) { text-align: right; }
+  tbody td {
+    padding: 0.625rem 1rem;
+    border-bottom: 1px solid var(--slate-100);
+    white-space: nowrap;
+  }
+  tbody td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+  tbody td:first-child { font-weight: 600; color: var(--slate-800); }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr.row-green { background: var(--green-50); }
+  tbody tr.row-red { background: var(--red-50); }
+  tbody tr.row-amber { background: var(--amber-50); }
+  .val-pos { color: var(--green-600); font-weight: 600; }
+  .val-neg { color: var(--red-600); font-weight: 600; }
+
+  .context-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .context-card {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    border-left: 4px solid var(--slate-300);
+  }
+  .context-card.green { border-left-color: var(--green-600); }
+  .context-card.red { border-left-color: var(--red-600); }
+  .context-card.amber { border-left-color: var(--amber-600); }
+  .context-card.purple { border-left-color: var(--purple-600); }
+  .context-card .brand-line {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+    flex-wrap: wrap;
+  }
+  .context-card .brand-name {
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--slate-900);
+  }
+  .context-card .brand-delta {
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+  .context-card .brand-delta.pos { color: var(--green-600); }
+  .context-card .brand-delta.neg { color: var(--red-600); }
+  .context-card .tag {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .tag.retro { background: var(--green-100); color: var(--green-600); }
+  .tag.no-disc { background: var(--amber-100); color: var(--amber-600); }
+  .tag.t1 { background: var(--blue-100); color: var(--blue-600); }
+  .tag.t2 { background: var(--slate-200); color: var(--slate-700); }
+  .tag.t3 { background: var(--slate-100); color: var(--slate-500); }
+  .tag.post-retro { background: var(--purple-100); color: var(--purple-600); }
+  .tag.lost-rev { background: var(--red-100); color: var(--red-600); }
+  .tag.oos { background: var(--amber-100); color: var(--amber-600); }
+  .context-card .context-text {
+    font-size: 0.8125rem;
+    color: var(--slate-600);
+    line-height: 1.5;
+  }
+
+  .takeaways {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .takeaway {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--slate-100);
+  }
+  .takeaway:last-child { border-bottom: none; }
+  .takeaway .num {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: var(--slate-800);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+  .takeaway .text {
+    font-size: 0.875rem;
+    color: var(--slate-700);
+    line-height: 1.55;
+  }
+  .takeaway .text strong { color: var(--slate-900); }
+
+  /* Pricing focus panel */
+  .focus-panel {
+    background: white;
+    border: 1px solid var(--slate-200);
+    border-top: 4px solid var(--blue-600);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .bridge {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .bridge-item {
+    background: var(--slate-50);
+    border: 1px solid var(--slate-200);
+    border-radius: 8px;
+    padding: 0.75rem;
+    text-align: center;
+  }
+  .bridge-item.drag { background: var(--red-50); border-color: var(--red-100); }
+  .bridge-item.lift { background: var(--green-50); border-color: var(--green-100); }
+  .bridge-item .bl {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--slate-500);
+  }
+  .bridge-item .bv {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--slate-900);
+    font-variant-numeric: tabular-nums;
+  }
+  .bridge-item.drag .bv { color: var(--red-600); }
+  .bridge-item.lift .bv { color: var(--green-600); }
+  .focus-lead {
+    font-size: 0.875rem;
+    color: var(--slate-700);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+  .focus-lead strong { color: var(--slate-900); }
+  .sub-head {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--slate-900);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 1.25rem 0 0.625rem;
+  }
+  .action-list { list-style: none; }
+  .action-list li {
+    font-size: 0.8125rem;
+    color: var(--slate-700);
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    border-bottom: 1px solid var(--slate-100);
+    position: relative;
+    line-height: 1.5;
+  }
+  .action-list li:last-child { border-bottom: none; }
+  .action-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--blue-600);
+    font-weight: 700;
+  }
+  .action-list strong { color: var(--slate-900); }
+
+  .note-box {
+    background: var(--amber-50);
+    border: 1px solid var(--amber-100);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 2.5rem;
+    font-size: 0.8125rem;
+    color: var(--slate-700);
+  }
+  .note-box strong { color: var(--slate-900); }
+
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--slate-200);
+    font-size: 0.75rem;
+    color: var(--slate-400);
+    text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    .container { padding: 1rem; }
+    .header h1 { font-size: 1.375rem; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    table { font-size: 0.8125rem; }
+    thead th, tbody td { padding: 0.5rem 0.625rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <a class="back-link" href="../index.html">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12L6 8l4-4"/></svg>
+    All reports
+  </a>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-top">
+      <h1>EC Brand Sales Deep Dive</h1>
+      <span class="badge positive">+5.2% WoW</span>
+    </div>
+    <p class="subtitle">
+      <strong>w/c 14 Sep vs 21 Sep 2026</strong> &mdash; <strong>Total e-commerce net sales, all customers</strong> (UK, excl. Healf Zone, HX, POS). First growth in four weeks: <strong>&pound;1.59m</strong>, orders +3.6%, AOV +1.5%. Existing customers +8.2% with retros down 68% - organic repeat demand back after Healf Week. New customers &minus;2.2%. 320 of 559 brands up, the broadest week since July.
+    </p>
+  </div>
+
+  <!-- Context note -->
+  <div class="note-box" style="border-left-color:var(--green-600);background:var(--green-50)">
+    <strong>The first clean post-promo week, and existing customers came back on their own.</strong> Retros fell &pound;34.2k &rarr; &pound;10.9k as the last Healf Week windows closed, yet existing-customer sales rose &pound;87.6k. Product margin before retros held at 37.08%. Retro-adjusted fell 1.9pp to 37.77% - that is simply the cover leaving, and 37.8% is the honest unpromoted baseline. The one thing that did not recover is new customers: 6,037, a fourth consecutive fall.
+  </div>
+
+  <!-- Filter note -->
+  <div class="note-box">
+    <strong>Data filters:</strong> All customers &bull; UK market &bull; Excludes Healf Zone, HX channel, POS &bull; Sale transactions only &bull; Excludes customer draft orders &bull; Healf warehouse, 28 Sep 2026. w/c 14 Sep restated to &pound;1,514,738 (was &pound;1,500,989, +0.9% - late orders).
+  </div>
+
+  <!-- Stat cards -->
+  <div class="stats">
+    <div class="stat-card">
+      <div class="label">Total Net Sales</div>
+      <div class="value">&pound;1.59m</div>
+      <div class="delta positive">&pound;1.51m &rarr; &pound;1.59m (+5.2%)</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Orders</div>
+      <div class="value">27,015</div>
+      <div class="delta positive">26,073 &rarr; 27,015 (+3.6%)</div>
+    </div>
+    <div class="stat-card">
+      <div class="label">Brands Up / Down</div>
+      <div class="value">320 / 233</div>
+      <div class="delta">of 559 brands with sales</div>
+    </div>
+  </div>
+
+  <!-- Trend -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon green">&#128200;</div>
+      <h2>Off the floor, without the retros</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Week</th><th>Net sales</th><th>Orders</th><th>AOV</th><th>Retros</th><th>Product margin</th><th>Retro-adj margin</th><th>&Delta; sales</th></tr></thead>
+        <tbody>
+          <tr><td>w/c 27 Jul</td><td>&pound;1,849,972</td><td>31,912</td><td>&pound;57.97</td><td>&pound;16,406</td><td>36.91%</td><td>37.82%</td><td class="val-pos">+2.7%</td></tr>
+          <tr class="row-red"><td>w/c 3 Aug</td><td>&pound;1,654,564</td><td>27,849</td><td>&pound;59.41</td><td>&pound;4,372</td><td>36.90%</td><td>37.17%</td><td class="val-neg">&minus;10.6%</td></tr>
+          <tr class="row-red"><td>w/c 10 Aug</td><td>&pound;1,570,122</td><td>26,521</td><td>&pound;59.20</td><td>&pound;6,625</td><td>36.89%</td><td>37.32%</td><td class="val-neg">&minus;5.1%</td></tr>
+          <tr><td>w/c 17 Aug</td><td>&pound;1,673,957</td><td>27,620</td><td>&pound;60.61</td><td>&pound;8,907</td><td class="val-neg">34.72%</td><td class="val-neg">35.26%</td><td class="val-pos">+6.6%</td></tr>
+          <tr class="row-green"><td>w/c 24 Aug</td><td>&pound;1,854,524</td><td>31,433</td><td>&pound;59.00</td><td>&pound;22,442</td><td class="val-neg">34.73%</td><td class="val-neg">35.96%</td><td class="val-pos">+10.8%</td></tr>
+          <tr><td>w/c 31 Aug</td><td>&pound;1,679,937</td><td>28,413</td><td>&pound;59.13</td><td>&pound;14,567</td><td>36.14%</td><td>37.03%</td><td class="val-neg">&minus;9.4%</td></tr>
+          <tr><td>w/c 7 Sep</td><td>&pound;1,665,640</td><td>27,839</td><td>&pound;59.83</td><td class="val-pos">&pound;59,929</td><td>35.62%</td><td class="val-pos">39.29%</td><td class="val-neg">&minus;0.9%</td></tr>
+          <tr class="row-red"><td>w/c 14 Sep</td><td>&pound;1,514,738</td><td>26,073</td><td>&pound;58.10</td><td>&pound;34,201</td><td class="val-pos">37.36%</td><td class="val-pos">39.65%</td><td class="val-neg">&minus;9.1%</td></tr>
+          <tr class="row-green"><td><strong>w/c 21 Sep</strong></td><td><strong>&pound;1,592,791</strong></td><td>27,015</td><td>&pound;58.96</td><td>&pound;10,933</td><td>37.08%</td><td>37.77%</td><td class="val-pos">+5.2%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="context-list">
+      <div class="context-card green">
+        <div class="brand-line"><span class="brand-name">Growth with two thirds less retro</span><span class="brand-delta pos">Retros &minus;&pound;23.3k, sales +&pound;78.1k</span></div>
+        <div class="context-text">Every one of the fourteen brands whose cover ended is still in the book, and the total still grew. Product margin before retros held at 37.08%. This is what the business does without promo support - and it is better than the four pre-promo August weeks.</div>
+      </div>
+      <div class="context-card">
+        <div class="brand-line"><span class="brand-name">Orders and basket both up</span><span class="brand-delta pos">Orders +3.6%, AOV +1.5%, units +5.2%</span></div>
+        <div class="context-text">Last week both fell. Reversed cleanly. Discount rate flat at 12.7%.</div>
+      </div>
+      <div class="context-card amber">
+        <div class="brand-line"><span class="brand-name">Bookends carried it</span><span class="brand-delta">Mon &pound;260.4k, Sun &pound;260.5k, mid-week &pound;212&ndash;218k</span></div>
+        <div class="context-text">Tuesday to Saturday were flat at &pound;212&ndash;218k, all roughly level with the week before. The +5.2% is Monday and Sunday. Monday was &pound;24k above the previous Monday - worth knowing what ran.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Segments + daily -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon purple">&#128101;</div>
+      <h2>Existing +8.2%, new &minus;2.2%</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Segment</th><th>w/c 14 Sep</th><th>w/c 21 Sep</th><th>&Delta; &pound;</th><th>&Delta; %</th><th>Retros w/c 21 Sep</th><th>Share</th></tr></thead>
+        <tbody>
+          <tr class="row-green"><td><strong>Existing customers</strong></td><td>&pound;1,071,647</td><td>&pound;1,159,238</td><td class="val-pos">+&pound;87,591</td><td class="val-pos">+8.2%</td><td>&pound;6,172</td><td>56%</td></tr>
+          <tr class="row-red"><td><strong>New customers</strong></td><td>&pound;443,091</td><td>&pound;433,553</td><td class="val-neg">&minus;&pound;9,538</td><td class="val-neg">&minus;2.2%</td><td>&pound;4,761</td><td>44%</td></tr>
+          <tr><td><strong>Total</strong></td><td>&pound;1,514,738</td><td>&pound;1,592,791</td><td class="val-pos">+&pound;78,052</td><td class="val-pos">+5.2%</td><td>&pound;10,933</td><td>100%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-wrap" style="margin-top:1rem">
+      <table>
+        <thead><tr><th>Day</th><th>w/c 14 Sep</th><th>w/c 21 Sep</th><th>&Delta; &pound;</th><th>NC w/c 21 Sep</th><th>New customers</th><th>Retros</th></tr></thead>
+        <tbody>
+          <tr class="row-green"><td>Monday</td><td>&pound;235,940</td><td>&pound;260,448</td><td class="val-pos">+&pound;24,508</td><td>&pound;74,189</td><td>898</td><td>&pound;1,503</td></tr>
+          <tr class="row-red"><td>Tuesday</td><td>&pound;228,783</td><td>&pound;214,783</td><td class="val-neg">&minus;&pound;14,000</td><td>&pound;58,808</td><td>873</td><td>&pound;1,709</td></tr>
+          <tr><td>Wednesday</td><td>&pound;219,987</td><td>&pound;217,642</td><td class="val-neg">&minus;&pound;2,345</td><td>&pound;56,332</td><td>852</td><td>&pound;1,787</td></tr>
+          <tr class="row-green"><td>Thursday</td><td>&pound;207,593</td><td>&pound;212,177</td><td class="val-pos">+&pound;4,584</td><td>&pound;59,500</td><td>845</td><td>&pound;1,430</td></tr>
+          <tr class="row-green"><td>Friday</td><td>&pound;189,789</td><td>&pound;213,627</td><td class="val-pos">+&pound;23,838</td><td>&pound;56,474</td><td>814</td><td>&pound;1,643</td></tr>
+          <tr class="row-green"><td>Saturday</td><td>&pound;196,299</td><td>&pound;213,587</td><td class="val-pos">+&pound;17,288</td><td>&pound;54,934</td><td class="val-neg">757</td><td>&pound;1,348</td></tr>
+          <tr class="row-green"><td>Sunday</td><td>&pound;222,598</td><td>&pound;260,526</td><td class="val-pos">+&pound;37,928</td><td>&pound;73,318</td><td>998</td><td>&pound;1,514</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="context-list">
+      <div class="context-card red">
+        <div class="brand-line"><span class="brand-name">New customers: fourth straight weekly fall, to 6,037</span><span class="brand-delta neg">7,449 &rarr; 7,068 &rarr; 6,403 &rarr; 6,037</span></div>
+        <div class="context-text">Every day Tue&ndash;Sat below the same day the week before; Saturday 757 is the lowest single day in the window. 1&ndash;27 Sep has delivered roughly 25.7k against a 45k target. NC sales per customer rose 3.8% to &pound;71.82, which is why NC sales only fell 2.2%.</div>
+      </div>
+      <div class="context-card green">
+        <div class="brand-line"><span class="brand-name">Retros are now flat and small</span><span class="brand-delta">&pound;1.3&ndash;1.8k a day, every day</span></div>
+        <div class="context-text">Oura (&pound;4.6k) is 42% of what remains. No Healf Week window carried into this week. Retro-adjusted margin of 37.77% is the clean unpromoted level.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top 20 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon amber">&#127942;</div>
+      <h2>Top 20 brands &mdash; w/c 21 Sep</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Brand</th><th>w/c 14 Sep</th><th>w/c 21 Sep</th><th>&Delta; &pound;</th><th>&Delta; %</th><th style="text-align:left">Comments</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Thorne</td><td>&pound;126,757</td><td>&pound;126,872</td><td class="val-pos">+&pound;115</td><td>+0.1%</td><td style="text-align:left">Flat for the second week. Stabilised at &pound;125&ndash;127k</td></tr>
+          <tr><td>2</td><td>Pure Encapsulations</td><td>&pound;88,307</td><td>&pound;90,476</td><td class="val-pos">+&pound;2,168</td><td>+2.5%</td><td style="text-align:left"></td></tr>
+          <tr class="row-green"><td>3</td><td>LMNT</td><td>&pound;71,508</td><td>&pound;86,110</td><td class="val-pos">+&pound;14,602</td><td class="val-pos">+20.4%</td><td style="text-align:left">Recovers from the window low. 4for3 was never removed - see note</td></tr>
+          <tr class="row-green"><td>4</td><td>Momentous</td><td>&pound;54,718</td><td>&pound;60,433</td><td class="val-pos">+&pound;5,715</td><td class="val-pos">+10.4%</td><td style="text-align:left">Units 1,783 to 2,051</td></tr>
+          <tr><td>5</td><td>Transparent Labs</td><td>&pound;39,283</td><td>&pound;42,669</td><td class="val-pos">+&pound;3,386</td><td>+8.6%</td><td style="text-align:left">Best week since 3 Aug</td></tr>
+          <tr><td>6</td><td>Nordic Naturals</td><td>&pound;40,073</td><td>&pound;41,788</td><td class="val-pos">+&pound;1,715</td><td>+4.3%</td><td style="text-align:left"></td></tr>
+          <tr class="row-green"><td>7</td><td>BodyHealth</td><td>&pound;26,780</td><td>&pound;33,339</td><td class="val-pos">+&pound;6,559</td><td class="val-pos">+24.5%</td><td style="text-align:left"><span class="tag post-retro">Retro off</span> Best week in the window, after cover ended</td></tr>
+          <tr class="row-green"><td>8</td><td>The Ultimate Human</td><td>&pound;25,064</td><td>&pound;32,262</td><td class="val-pos">+&pound;7,198</td><td class="val-pos">+28.7%</td><td style="text-align:left">Second window high in a row - at a 33.5% discount rate</td></tr>
+          <tr class="row-red"><td>9</td><td>WHOOP</td><td>&pound;35,856</td><td>&pound;30,665</td><td class="val-neg">&minus;&pound;5,191</td><td class="val-neg">&minus;14.5%</td><td style="text-align:left">Lowest in the window. Third week down</td></tr>
+          <tr class="row-green"><td>10</td><td>Garmin</td><td>&pound;5,408</td><td>&pound;29,560</td><td class="val-pos">+&pound;24,152</td><td class="val-pos">+446.6%</td><td style="text-align:left">Best week in the window at full price - discount 9.3% to 1.95%, units 32 to 73. Third swing in five weeks; reads as stock landing in batches. No Slack trace of a launch</td></tr>
+          <tr class="row-green"><td>11</td><td>Codeage</td><td>&pound;24,170</td><td>&pound;29,303</td><td class="val-pos">+&pound;5,133</td><td class="val-pos">+21.2%</td><td style="text-align:left"></td></tr>
+          <tr class="row-red"><td>12</td><td>Oura Ring</td><td>&pound;34,894</td><td>&pound;26,214</td><td class="val-neg">&minus;&pound;8,680</td><td class="val-neg">&minus;24.9%</td><td style="text-align:left"><span class="tag retro">Retro</span> Fourth week down, &minus;55% from &pound;58.6k. Cover held</td></tr>
+          <tr class="row-green"><td>13</td><td>Designs for Health</td><td>&pound;20,917</td><td>&pound;23,041</td><td class="val-pos">+&pound;2,125</td><td class="val-pos">+10.2%</td><td style="text-align:left"></td></tr>
+          <tr class="row-red"><td>14</td><td>MaryRuth's</td><td>&pound;25,564</td><td>&pound;22,640</td><td class="val-neg">&minus;&pound;2,923</td><td class="val-neg">&minus;11.4%</td><td style="text-align:left"></td></tr>
+          <tr><td>15</td><td>Seeking Health</td><td>&pound;22,043</td><td>&pound;20,383</td><td class="val-neg">&minus;&pound;1,660</td><td>&minus;7.5%</td><td style="text-align:left"></td></tr>
+          <tr><td>16</td><td>Bare Biology</td><td>&pound;17,164</td><td>&pound;18,672</td><td class="val-pos">+&pound;1,508</td><td>+8.8%</td><td style="text-align:left"></td></tr>
+          <tr class="row-red"><td>17</td><td>Form Nutrition</td><td>&pound;24,029</td><td>&pound;18,618</td><td class="val-neg">&minus;&pound;5,411</td><td class="val-neg">&minus;22.5%</td><td style="text-align:left">Lowest in the window. NC &minus;58%</td></tr>
+          <tr><td>18</td><td>Kiki Health</td><td>&pound;18,575</td><td>&pound;17,579</td><td class="val-neg">&minus;&pound;996</td><td>&minus;5.4%</td><td style="text-align:left"></td></tr>
+          <tr class="row-green"><td>19</td><td>COROS</td><td>&pound;14,887</td><td>&pound;17,236</td><td class="val-pos">+&pound;2,349</td><td class="val-pos">+15.8%</td><td style="text-align:left"><span class="tag no-disc">MAP</span></td></tr>
+          <tr class="row-green"><td>20</td><td>Biocare</td><td>&pound;14,084</td><td>&pound;17,102</td><td class="val-pos">+&pound;3,018</td><td class="val-pos">+21.4%</td><td style="text-align:left">Best week since 24 Aug</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Gainers -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon green">&#128200;</div>
+      <h2>Gainers &mdash; w/c 14 Sep &rarr; 21 Sep</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Brand</th><th>w/c 14 Sep</th><th>w/c 21 Sep</th><th>&Delta; &pound;</th><th>&Delta; %</th><th style="text-align:left">Comments</th></tr></thead>
+        <tbody>
+          <tr class="row-green"><td>Garmin</td><td>&pound;5,408</td><td>&pound;29,560</td><td class="val-pos">+&pound;24,152</td><td class="val-pos">+446.6%</td><td style="text-align:left">Best week in the window at full price - discount 9.3% to 1.95%, units 32 to 73. Third swing in five weeks; reads as stock landing in batches. No Slack trace of a launch</td></tr>
+          <tr class="row-green"><td>LMNT</td><td>&pound;71,508</td><td>&pound;86,110</td><td class="val-pos">+&pound;14,602</td><td class="val-pos">+20.4%</td><td style="text-align:left">4for3-coded sales &pound;20.9k to &pound;24.0k. One-week dip, not a removal</td></tr>
+          <tr class="row-green"><td>The Ultimate Human</td><td>&pound;25,064</td><td>&pound;32,262</td><td class="val-pos">+&pound;7,198</td><td class="val-pos">+28.7%</td><td style="text-align:left">Discount 41.6% to 33.5%. Retro &pound;1.6k. Mostly self-funded</td></tr>
+          <tr class="row-green"><td>BodyHealth</td><td>&pound;26,780</td><td>&pound;33,339</td><td class="val-pos">+&pound;6,559</td><td class="val-pos">+24.5%</td><td style="text-align:left"><span class="tag post-retro">Retro off</span> Held and grew. The retro that worked</td></tr>
+          <tr class="row-green"><td>Momentous</td><td>&pound;54,718</td><td>&pound;60,433</td><td class="val-pos">+&pound;5,715</td><td class="val-pos">+10.4%</td><td style="text-align:left"></td></tr>
+          <tr class="row-green"><td>Codeage</td><td>&pound;24,170</td><td>&pound;29,303</td><td class="val-pos">+&pound;5,133</td><td class="val-pos">+21.2%</td><td style="text-align:left"></td></tr>
+          <tr class="row-green"><td>Black+Blum</td><td>&pound;2,030</td><td>&pound;6,724</td><td class="val-pos">+&pound;4,693</td><td class="val-pos">+231.1%</td><td style="text-align:left"><span class="tag retro">Retro</span> Q4 gifting brand, first &pound;565 of cover</td></tr>
+          <tr class="row-green"><td>Energybits</td><td>&pound;3,242</td><td>&pound;7,351</td><td class="val-pos">+&pound;4,110</td><td class="val-pos">+126.8%</td><td style="text-align:left"><span class="tag post-retro">Retro off</span> Doubled with cover gone</td></tr>
+          <tr class="row-green"><td>Transparent Labs</td><td>&pound;39,283</td><td>&pound;42,669</td><td class="val-pos">+&pound;3,386</td><td class="val-pos">+8.6%</td><td style="text-align:left"></td></tr>
+          <tr class="row-green"><td>Biocare</td><td>&pound;14,084</td><td>&pound;17,102</td><td class="val-pos">+&pound;3,018</td><td class="val-pos">+21.4%</td><td style="text-align:left"></td></tr>
+          <tr class="row-green"><td>Paleovalley</td><td>&pound;4,064</td><td>&pound;6,800</td><td class="val-pos">+&pound;2,735</td><td class="val-pos">+67.3%</td><td style="text-align:left"></td></tr>
+          <tr class="row-green"><td>COROS</td><td>&pound;14,887</td><td>&pound;17,236</td><td class="val-pos">+&pound;2,349</td><td class="val-pos">+15.8%</td><td style="text-align:left"><span class="tag no-disc">MAP</span></td></tr>
+          <tr class="row-green"><td>Pure Encapsulations</td><td>&pound;88,307</td><td>&pound;90,476</td><td class="val-pos">+&pound;2,168</td><td class="val-pos">+2.5%</td><td style="text-align:left"></td></tr>
+          <tr class="row-green"><td>Designs for Health</td><td>&pound;20,917</td><td>&pound;23,041</td><td class="val-pos">+&pound;2,125</td><td class="val-pos">+10.2%</td><td style="text-align:left"></td></tr>
+          <tr class="row-green"><td>Lola Blankets</td><td>&pound;2,861</td><td>&pound;4,835</td><td class="val-pos">+&pound;1,974</td><td class="val-pos">+69.0%</td><td style="text-align:left"><span class="tag oos">Stock back</span> Was at 2 units on 26 Sep</td></tr>
+          <tr class="row-green"><td>Metagenics</td><td>&pound;13,448</td><td>&pound;15,068</td><td class="val-pos">+&pound;1,620</td><td class="val-pos">+12.0%</td><td style="text-align:left"><span class="tag post-retro">Retro off</span> Recovers, still 9% below pre-retro</td></tr>
+          <tr class="row-green"><td>Nurosym</td><td>&pound;3,419</td><td>&pound;5,017</td><td class="val-pos">+&pound;1,597</td><td class="val-pos">+46.7%</td><td style="text-align:left"></td></tr>
+          <tr class="row-green"><td>Omnilux</td><td>&pound;6,543</td><td>&pound;8,128</td><td class="val-pos">+&pound;1,585</td><td class="val-pos">+24.2%</td><td style="text-align:left"></td></tr>
+          <tr class="row-green"><td>Bare Biology</td><td>&pound;17,164</td><td>&pound;18,672</td><td class="val-pos">+&pound;1,508</td><td class="val-pos">+8.8%</td><td style="text-align:left"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="context-list">
+      <div class="context-card green">
+        <div class="brand-line"><span class="brand-name">Broadest gainer list since July</span><span class="brand-delta pos">320 brands up, 12 of the top 20 gainers over &pound;10k</span></div>
+        <div class="context-text">Last week's growth was three brands. This week the core supplement book moved together: LMNT, Momentous, Codeage, Transparent Labs, Biocare, DFH, Pure Encapsulations all up. That is repeat demand, not promo.</div>
+      </div>
+      <div class="context-card amber">
+        <div class="brand-line"><span class="brand-name">LMNT: correcting last week's 4for3 read</span><span class="brand-delta pos">&pound;71.5k &rarr; &pound;86.1k</span></div>
+        <div class="context-text">The <code>4for3offer</code> code is present in all four September weeks, &pound;31.0k &rarr; &pound;26.3k &rarr; &pound;20.9k &rarr; &pound;24.0k of coded sales. It was never removed, only dipped for the test cohort, and both coded and total LMNT recovered this week. Last week's low was a one-week dip. The &minus;44% since 20 Jul stands.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decliners -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon red">&#128201;</div>
+      <h2>Decliners &mdash; w/c 14 Sep &rarr; 21 Sep</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Brand</th><th>w/c 14 Sep</th><th>w/c 21 Sep</th><th>&Delta; &pound;</th><th>&Delta; %</th><th style="text-align:left">Comments</th></tr></thead>
+        <tbody>
+          <tr class="row-red"><td>Oura Ring</td><td>&pound;34,894</td><td>&pound;26,214</td><td class="val-neg">&minus;&pound;8,680</td><td class="val-neg">&minus;24.9%</td><td style="text-align:left"><span class="tag retro">Retro</span> Units 161 to 125. Cover held at &pound;4.6k. Fourth week down</td></tr>
+          <tr class="row-red"><td>Form Nutrition</td><td>&pound;24,029</td><td>&pound;18,618</td><td class="val-neg">&minus;&pound;5,411</td><td class="val-neg">&minus;22.5%</td><td style="text-align:left">Window low</td></tr>
+          <tr class="row-red"><td>WHOOP</td><td>&pound;35,856</td><td>&pound;30,665</td><td class="val-neg">&minus;&pound;5,191</td><td class="val-neg">&minus;14.5%</td><td style="text-align:left">Window low. Units 331 to 277</td></tr>
+          <tr class="row-red"><td>BON CHARGE</td><td>&pound;9,627</td><td>&pound;4,865</td><td class="val-neg">&minus;&pound;4,761</td><td class="val-neg">&minus;49.5%</td><td style="text-align:left"><span class="tag post-retro">Retro off</span> 38% below pre-retro. Check stock</td></tr>
+          <tr class="row-red"><td>Aarke</td><td>&pound;12,343</td><td>&pound;9,088</td><td class="val-neg">&minus;&pound;3,254</td><td class="val-neg">&minus;26.4%</td><td style="text-align:left"><span class="tag no-disc">MAP</span> Window low, third week down</td></tr>
+          <tr class="row-red"><td>MaryRuth's</td><td>&pound;25,564</td><td>&pound;22,640</td><td class="val-neg">&minus;&pound;2,923</td><td class="val-neg">&minus;11.4%</td><td style="text-align:left"></td></tr>
+          <tr class="row-red"><td>Lumie</td><td>&pound;5,971</td><td>&pound;3,260</td><td class="val-neg">&minus;&pound;2,711</td><td class="val-neg">&minus;45.4%</td><td style="text-align:left"><span class="tag oos">OOS?</span> Gives back last week's recovery</td></tr>
+          <tr class="row-red"><td>Balance Phone</td><td>&pound;10,689</td><td>&pound;8,021</td><td class="val-neg">&minus;&pound;2,669</td><td class="val-neg">&minus;25.0%</td><td style="text-align:left">Units 37 to 25. Slide resumes</td></tr>
+          <tr class="row-red"><td>HigherDOSE</td><td>&pound;8,729</td><td>&pound;6,252</td><td class="val-neg">&minus;&pound;2,477</td><td class="val-neg">&minus;28.4%</td><td style="text-align:left"><span class="tag retro">Retro</span> Fell with &pound;953 of cover still on</td></tr>
+          <tr class="row-red"><td>Hyperice</td><td>&pound;15,997</td><td>&pound;13,551</td><td class="val-neg">&minus;&pound;2,446</td><td class="val-neg">&minus;15.3%</td><td style="text-align:left"></td></tr>
+          <tr class="row-red"><td>Promix Nutrition</td><td>&pound;11,438</td><td>&pound;9,358</td><td class="val-neg">&minus;&pound;2,080</td><td class="val-neg">&minus;18.2%</td><td style="text-align:left"><span class="tag post-retro">Retro off</span> Back to pre-retro base</td></tr>
+          <tr class="row-red"><td>Dream Recovery</td><td>&pound;3,134</td><td>&pound;1,112</td><td class="val-neg">&minus;&pound;2,022</td><td class="val-neg">&minus;64.5%</td><td style="text-align:left"><span class="tag post-retro">Retro off</span> Gave it all back</td></tr>
+          <tr class="row-red"><td>JENKI</td><td>&pound;3,085</td><td>&pound;1,331</td><td class="val-neg">&minus;&pound;1,754</td><td class="val-neg">&minus;56.9%</td><td style="text-align:left"><span class="tag post-retro">Retro off</span> Back to base</td></tr>
+          <tr class="row-red"><td>Cytoplan</td><td>&pound;10,005</td><td>&pound;8,302</td><td class="val-neg">&minus;&pound;1,703</td><td class="val-neg">&minus;17.0%</td><td style="text-align:left"></td></tr>
+          <tr class="row-red"><td>Seeking Health</td><td>&pound;22,043</td><td>&pound;20,383</td><td class="val-neg">&minus;&pound;1,660</td><td class="val-neg">&minus;7.5%</td><td style="text-align:left"></td></tr>
+          <tr class="row-red"><td>NodPod</td><td>&pound;2,577</td><td>&pound;1,381</td><td class="val-neg">&minus;&pound;1,195</td><td class="val-neg">&minus;46.4%</td><td style="text-align:left"><span class="tag oos">OOS</span> Body Sage and 4 mask colours at zero</td></tr>
+          <tr class="row-red"><td>Kiki Health</td><td>&pound;18,575</td><td>&pound;17,579</td><td class="val-neg">&minus;&pound;996</td><td class="val-neg">&minus;5.4%</td><td style="text-align:left"></td></tr>
+          <tr class="row-red"><td>Equip Foods</td><td>&pound;4,852</td><td>&pound;3,906</td><td class="val-neg">&minus;&pound;946</td><td class="val-neg">&minus;19.5%</td><td style="text-align:left"><span class="tag post-retro">Retro off</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="context-list">
+      <div class="context-card red">
+        <div class="brand-line"><span class="brand-name">Oura and WHOOP: &minus;&pound;13.9k between them, both at window lows</span><span class="brand-delta neg">Oura &minus;55% from its 31 Aug peak</span></div>
+        <div class="context-text">The two subscription wearables fell while Garmin, COROS and Withings all rose. Oura's cover has held at &pound;4.6&ndash;6.8k every week, so this is not the retro. Together they were &pound;104k a week at the end of August and are &pound;57k now.</div>
+      </div>
+      <div class="context-card amber">
+        <div class="brand-line"><span class="brand-name">Six retro-off brands fell, two grew</span><span class="brand-delta">Promix, Dream Recovery, JENKI, Equip, Wild Nutrition, BON CHARGE down; BodyHealth, Energybits up</span></div>
+        <div class="context-text">Most went back to base rather than below it. BON CHARGE and Dream Recovery are the two that fell through their pre-retro level.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Takeaways -->
+  <div class="section">
+    <div class="section-header">
+      <div class="icon blue">&#128161;</div>
+      <h2>Key takeaways</h2>
+    </div>
+    <div class="takeaways">
+      <div class="takeaway">
+        <div class="num">1</div>
+        <div class="text"><strong>First growth in four weeks, and it came without promo.</strong> &pound;1.59m, +5.2%, on existing customers +8.2% with retros down 68%. Orders and basket both up. 320 of 559 brands rose - the broadest week since July, led by the core supplement book. Product margin before retros held at 37.08%; retro-adjusted 37.77% is the honest unpromoted baseline for October.</div>
+      </div>
+      <div class="takeaway">
+        <div class="num">2</div>
+        <div class="text"><strong>New customers are the problem, and it is getting worse.</strong> 6,037, the fourth consecutive fall - 7,449 &rarr; 7,068 &rarr; 6,403 &rarr; 6,037. Saturday's 757 was the lowest day in the window. 1&ndash;27 Sep has delivered roughly 25.7k against a 45k target; the month lands near 28.5k. Existing customers cannot carry Q4 on their own.</div>
+      </div>
+      <div class="takeaway">
+        <div class="num">3</div>
+        <div class="text"><strong>Garmin is back at its August level - and swinging with stock.</strong> NC &pound;15.1k, all-customer &pound;29.6k, the best week in the window, on a discount rate of 1.95% - people are paying full price. But it has gone &pound;2.5k &rarr; &pound;11.8k &rarr; &pound;4.1k &rarr; &pound;15.1k over five weeks, which is what intermittent stock looks like, not a demand trend. No launch or restock message in Slack this month. A lost revenue extract would settle it; if stock is the constraint, this is the easiest &pound;10k a week on the page to make permanent.</div>
+      </div>
+      <div class="takeaway">
+        <div class="num">4</div>
+        <div class="text"><strong>Oura and WHOOP are both at window lows while the watch brands grow.</strong> Oura &pound;58.6k &rarr; &pound;26.2k in four weeks with cover held throughout; WHOOP &pound;45.7k &rarr; &pound;30.7k. Garmin, COROS and Withings all rose. That is brand-specific, not a wearables category swing. Both need an owner before the Q4 tech push.</div>
+      </div>
+      <div class="takeaway">
+        <div class="num">5</div>
+        <div class="text"><strong>Healf Week's durable return was BodyHealth and Energybits.</strong> Both grew after cover ended - BodyHealth to its best week in the window. Six others went back to base or below; BON CHARGE is 38% under its pre-retro level. &pound;94k of cover, two lasting lifts.</div>
+      </div>
+      <div class="takeaway">
+        <div class="num">6</div>
+        <div class="text"><strong>Two corrections to last week.</strong> LMNT: 4for3 was never removed - the code is in all four weeks - and LMNT recovered +20% to &pound;86.1k. One-week dip. The Ultimate Human: its growth carries a 33&ndash;42% discount rate, not "no price lever" as I said. It is now the eighth largest brand at &pound;32.3k, mostly self-funded.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    EC Brand Sales Deep Dive &bull; w/c 21 Sep 2026 &bull; Siddhansh Arora, Director of Trading and Marketing &bull; Data: Healf warehouse, 28 Sep 2026
+  </div>
+
+</div>
+</body>
+</html>
